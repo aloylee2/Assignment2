@@ -48,33 +48,6 @@
     background-color: #111;
   }
 
-  /* car slider
- .slider-container{
-  max-width: 300px;
-  width: 100%;
-  padding: 15px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  grid-gap: 10px;
-  user-select:none;
- }
- .slider-img{
-  width: 100%;
-  height: 600px;
- }
- .slider-img img{
-   width:100%;
-   height:100%;
-   object-fit:cover;
-   object-position:center;
- }
- .slider-text strong{
-  color: white;
-
- } */
-
-
   @media only screen and (max-width:800px) {
     /* For tablets: */
     .main {
@@ -94,21 +67,14 @@
 
 
 
-section {
+article{
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 500px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   background: #5d5f61;
   overflow: hidden;
-}
-
-.swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
 }
 
 .swiper-slide {
@@ -122,20 +88,11 @@ section {
   align-items: self-start;
 }
 
-.swiper-slide-active {
-  filter: blur(0px);
-}
-
-.swiper-pagination-bullet,
-.swiper-pagination-bullet-active {
-  background: #fff;
-}
-
 .swiper-slide span {
   text-transform: uppercase;
   color: #fff;
   background: #1b7402;
-  padding: 7px 18px 7px 25px;
+  padding: 7px 18px 10px 25px;
   display: inline-block;
   border-radius: 0 20px 20px 0px;
   letter-spacing: 2px;
@@ -159,6 +116,10 @@ section {
   background: #505152;
 }
 
+.swiper-slide--five span {
+  background: #176bbe;
+}
+
 .swiper-slide h2 {
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -169,64 +130,101 @@ section {
   padding: 25px 45px 0 25px;
 }
 
-.swiper-slide p {
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  padding: 0 25px 35px 25px;
+.swiper-slide--one{
+  background-image:url("https://images.unsplash.com/photo-1596521864207-13d46b1a0c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 
-.swiper-slide svg {
-  color: #fff;
-  width: 22px;
-  height: 22px;
-  margin-right: 7px;
+.swiper-slide--two{
+  background-image:url("https://images.unsplash.com/photo-1571900670723-a317a66e3fb7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=423&q=80");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 
-.swiper-slide--one {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-    url(https://images.unsplash.com/photo-1556206079-747a7a424d3d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80)
-      no-repeat 50% 50% / cover;
+button{
+  background: transparent;
+  border:none;
+  color:white;
+
 }
 
-.swiper-slide--two {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-    url("https://images.unsplash.com/photo-1571900670723-a317a66e3fb7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=423&q=80")
-      no-repeat 50% 50% / cover;
+
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 700px;
+  position: relative;
+  margin: auto;
+}
+.container img {
+  height: 100%;
+  width: 100%;
+  .container img {
+  object-fit: contain;
+} 
 }
 
-.swiper-slide--three {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-    url("https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")
-      no-repeat 50% 50% / cover;
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
 }
 
-.swiper-slide--four {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-    url("https://images.unsplash.com/photo-1650367310179-e1b5b8e453c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
-      no-repeat 50% 50% / cover;
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
 }
 
-.swiper-slide--five {
-  background: linear-gradient(to top, #0f2027, #203a4300, #2c536400),
-    url("https://images.unsplash.com/photo-1596521864207-13d46b1a0c78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80")
-      no-repeat 50% 50% / cover;
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
-.swiper-3d .swiper-slide-shadow-left,
-.swiper-3d .swiper-slide-shadow-right {
-  background-image: none;
+.active {
+  background-color: #717171;
 }
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
 
   </style>
 </head>
 <body>
+  <!-- =================start Logo========================= -->
   <div class="logo-navbar">
     <div class="div-middle">
     <img src="OIP.jpg" href="#myPage"width="100" height="100">
     </div>
+  <!-- =================End Logo========================= -->
+  <!-- =================Start navbar========================= -->
     <nav class="navbar">
         <ul>
           <div class="navbar-left">
@@ -237,88 +235,89 @@ section {
         </ul>
     </nav>
     </div>
-  <section>
+  <!-- =================end navbar========================= -->
+   <section>
+    <h2>Automatic Slideshow</h2>
+<p>Change image every 2 seconds:</p>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="bmw.jpg" height="700px" width="100%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="OIP.jpg"  height="400px" width="100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="bmw.jpg"  height="400px" width="100%">
+  <div class="text">Caption Three</div>
+</div>
+
+</div>
+<br>
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+   </section>
+  <!-- =================Start of silder========================= -->
+  <article>
     <div class="swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide swiper-slide--one">
           <span>domestic</span>
-          <div>
-            <h2>Enjoy the exotic of sunny Hawaii</h2>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-              Maui, Hawaii
-            </p>
-            <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
-          </div>
+          <div class="buttonforexplore">
+            <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+        </div>
         </div>
         <div class="swiper-slide swiper-slide--two">
           <span>subtropical</span>
           <div>
-            <h2>The Island of Eternal Spring</h2>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-              Lanzarote, Spanien
-            </p>
-            <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
+            <div class="buttonforexplore">
+              <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+          </div>
           </div>
         </div>
   
         <div class="swiper-slide swiper-slide--three">
           <span>history</span>
-          <div>
-            <h2>Awesome Eiffel Tower</h2>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-              Paris, France
-            </p>
-            <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
-          </div>
+          <div class="buttonforexplore">
+            <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+        </div>
         </div>
   
         <div class="swiper-slide swiper-slide--four">
           <span>Mayans</span>
-          <div>
-            <h2>One of the safest states in Mexico</h2>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-              The Yucatan, Mexico
-            </p>
-            <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
-          </div>
+          <div class="buttonforexplore">
+            <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+        </div>
         </div>
   
         <div class="swiper-slide swiper-slide--five">
           <span>native</span>
-          <div>
-            <h2>The most popular yachting destination</h2>
-            <p>
-  
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-              </svg>
-              Whitsunday Islands, Australia
-            </p>
-            <a href="https://en.wikipedia.org/wiki/Seahorse" target="_blank">explore</a>
-          </div>
+          <div class="buttonforexplore">
+            <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+        </div>
         </div>
       </div>
       <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-pagination"></div> -->
     </div>
-  </section>
+  </article>
+  <!-- =================End of silder========================= -->
+
+
+
+
+
   <script>
     var swiper = new Swiper(".swiper", {
   effect: "coverflow",
@@ -346,15 +345,27 @@ section {
   }
 });
 
+
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 1000); // Change image every 2 seconds
+}
   </script>
-  <form action="/action_page.php">
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" value="John"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" value="Doe"><br><br>
-    <input type="submit" value="Submit">
-  </form> 
-  
-  <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 </body>
 </html>
