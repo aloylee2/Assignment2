@@ -126,14 +126,14 @@ article{
 }
 
 .swiper-slide--one{
-  background-image:url("bmw.jpg");
+  background-image:url("");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
 }
 
 .swiper-slide--two{
-  background-image:url("https://images.unsplash.com/photo-1571900670723-a317a66e3fb7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=423&q=80");
+  background-image:url("image/bmw.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -214,6 +214,30 @@ img {vertical-align: middle;}
   to {opacity: 1}
 }
 
+/* css for banner */
+
+.banner{
+  padding: 10px;
+  background: linear-gradient(to top,lightslategray,darkgray);
+  height: 200px;
+  
+}
+.banner-text{
+  text-align:center;
+  top:50%;
+  bottom:50%;
+  padding-toP:2em;
+}
+
+.banner-button{
+  border:none;
+  text-align: center;
+  display:inline-block;
+  padding: 9px;
+  background-color: darkgray;
+  font-size: 18px;
+  border-radius: 10px;
+}
 
   </style>
 </head>
@@ -240,16 +264,17 @@ img {vertical-align: middle;}
    <!--==================start of banner====================-->
     <div class="banner">
       <div class="banner-text">
-        <h1>AZOOM CAR RENTAL</h1>
-        <p>BE ECO CAUSE WE CAN</p>
+        <h1 class="banner-h1">AZOOM CAR RENTAL</h1>
+        <br>
+        <p class="banner-p">BE ECO CAUSE WE CAN</p>
+        <br>
+        <br>
         <button class="banner-button">Book Now</button>
       </div>
     </div>
    <!--==================start of banner====================-->
-    <h2>Automatic Slideshow</h2>
-<p>Change image every 2 seconds:</p>
 
-<div class="slideshow-container">
+<!-- <div class="slideshow-container">
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
@@ -276,7 +301,7 @@ img {vertical-align: middle;}
   <span class="dot"></span> 
   <span class="dot"></span> 
 </div>
-   </section>
+   </section> -->
   <!-- =================Start of silder========================= -->
   <article>
     <div class="swiper">
