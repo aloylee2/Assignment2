@@ -11,6 +11,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border:0;
   }
   /* this is for logo */
   .div-middle{
@@ -63,9 +64,9 @@
 article{
   position: relative;
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   display: flex;
-  background: #414242;
+  background: #616868;
   overflow: hidden;
   padding-top: 20px;
 }
@@ -155,17 +156,11 @@ button{
 
 /* Slideshow container */
 .slideshow-container {
-  /* display:inline-block; 
-  height:700px; 
-  overflow:hidden; 
-  width:100%; */
   max-width: 100%;
   position: relative;
   margin: auto;
   align-items: self-start;
   justify-content: end;
-  /* overflow:hidden;  */
-  height:700px;
 }
 .container img {
   object-fit: cover;
@@ -245,9 +240,30 @@ img {vertical-align: middle;}
   border-radius: 10px;
 }
 
+
+
+
+
+/* start of grid */
+.cards{
+  display:grid;
+  grid-template-columns: auto auto auto;
+  background-color: lightgray;
+  text-align: center;
+}
+/* .card-image{
+  
+} */
+
+/* start of foooter */
+
+
+/* footer section end */
+
   </style>
 </head>
 <body>
+  <main>
   <!-- =================start Logo========================= -->
   <div class="logo-navbar">
     <div class="div-middle">
@@ -271,7 +287,7 @@ img {vertical-align: middle;}
       <div class="banner-text">
         <h1 class="banner-h1">AZOOM CAR RENTAL</h1>
         <br>
-        <p class="banner-p">BE ECO-FRIDENLY CAUSE WE CAN</p>
+        <p class="banner-p">BE ECO-FRIENDLY CAUSE WE CAN</p>
         <br>
         <button class="banner-button">Book Now</button>
       </div>
@@ -282,7 +298,7 @@ img {vertical-align: middle;}
   <!-- =================Start of silder========================= -->
   <article>
     <div class="swiper">
-      <h1 class="swiper-h1">List of electric car we have</h1>
+      <h1 class="swiper-h1">List of electric cars</h1>
       <div class="swiper-wrapper">
         <div class="swiper-slide swiper-slide--one">
           <span>domestic</span>
@@ -322,11 +338,82 @@ img {vertical-align: middle;}
       </div>
     </div>
   </article>
-  <section>
+   <!-- =================End of silder========================= -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="">
+          <h1>text1</h1>
+        </div>
+        <div class="card-info">
+          <h2>info 1</h2>
+        </div>
+      </div>
+      
+    </div>
+    <div class="feedback container">
+      <label for="fname">First Name</label>
+    <input type="text" id="fname" name="fname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lname" placeholder="Your last name..">
     
-  </section>
-  <!-- =================End of silder========================= -->
+    <label for="lname">Phone Number</label>
+    <input type="number" id="number" name="number" placeholder="Your number..">
+
+    <label for="feedback">Feedback</label>
+    <textarea id="feedback" name="feedback" placeholder="Write your feedback.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+    </div>
+    
 </section>
+</main>
   <script>
     var swiper = new Swiper(".swiper", {
   effect: "coverflow",
@@ -377,4 +464,6 @@ function showSlides() {
 }
   </script>
 </body>
+
+<footer></footer>
 </html>
