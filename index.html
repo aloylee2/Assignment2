@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
 * {
-    border:0;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -20,18 +19,17 @@
   /* this is for navbar */
   ul{
     list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    text-align: center; 
     background-color: black;
+    padding:0;
+    margin:0;
   }
 
   li{
-    float: left;
+    display: inline-block;
+    font-size: 23px;
   }
-  .li-right{
-    float: right;
-  }
+ 
   li a {
     display: block;
     color: white;
@@ -67,9 +65,16 @@ article{
   width: 100%;
   height: 500px;
   display: flex;
-  background: #5d5f61;
+  background: #414242;
   overflow: hidden;
   padding-top: 20px;
+}
+
+.swiper-h1{
+  text-align: center;
+  color: white;
+  padding-bottom: 15px;
+
 }
 
 .swiper-slide {
@@ -224,9 +229,10 @@ img {vertical-align: middle;}
 }
 .banner-text{
   text-align:center;
-  top:50%;
-  bottom:50%;
   padding-toP:2em;
+}
+.banner-h1{
+  font-size: 35px;
 }
 
 .banner-button{
@@ -245,17 +251,16 @@ img {vertical-align: middle;}
   <!-- =================start Logo========================= -->
   <div class="logo-navbar">
     <div class="div-middle">
-    <img src="OIP.jpg" href="#myPage"width="100" height="100">
+    <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
     </div>
   <!-- =================End Logo========================= -->
   <!-- =================Start navbar========================= -->
     <nav class="navbar">
         <ul>
-          <div class="navbar-left">
+          <div class="navbar-middle">
           <li><a href="#home">Home</a></li>
           <li><a href="#cars">Cars</a></li>
           <li><a href="#about">About</a></li>
-          <li class="li-right"><a href="login.html">Manage Booking</a></li>
         </ul>
     </nav>
     </div>
@@ -266,45 +271,18 @@ img {vertical-align: middle;}
       <div class="banner-text">
         <h1 class="banner-h1">AZOOM CAR RENTAL</h1>
         <br>
-        <p class="banner-p">BE ECO CAUSE WE CAN</p>
-        <br>
+        <p class="banner-p">BE ECO-FRIDENLY CAUSE WE CAN</p>
         <br>
         <button class="banner-button">Book Now</button>
       </div>
     </div>
-   <!--==================start of banner====================-->
+   <!--==================End of banner====================-->
 
-<!-- <div class="slideshow-container">
 
-<div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="image/bmw.jpg" height="100%" width="100%">
-  <div class="text">Caption Text</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="image/OIP.jpg" height="100%" width="100%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="image/bmw.jpg" height="100%" width="100%">
-  <div class="text">Caption Three</div>
-</div>
-
-</div>
-<br>
-<div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-</div>
-   </section> -->
   <!-- =================Start of silder========================= -->
   <article>
     <div class="swiper">
+      <h1 class="swiper-h1">List of electric car we have</h1>
       <div class="swiper-wrapper">
         <div class="swiper-slide swiper-slide--one">
           <span>domestic</span>
@@ -342,16 +320,13 @@ img {vertical-align: middle;}
         </div>
         </div>
       </div>
-      <!-- Add Pagination -->
-      <!-- <div class="swiper-pagination"></div> -->
     </div>
   </article>
+  <section>
+    
+  </section>
   <!-- =================End of silder========================= -->
-
-
-
-
-
+</section>
   <script>
     var swiper = new Swiper(".swiper", {
   effect: "coverflow",
