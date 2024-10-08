@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   
+  
 </head>
 <body>
   <main>
@@ -21,25 +22,22 @@
         <ul class="top-nav-uil">
           <div class="navbar-middle">
           <li class="top-nav-li"><a href="#home">Home</a></li>
-          <li class="top-nav-li"><a href="#" id="switchToLogin">Login</a></li>
-          <li class="top-nav-li"><a href="#about">About</a></li>
+          <li class="top-nav-li"><a href="#"
+            id="switchToLogin">Login</a></li>
+          <li class="top-nav-li"><a href="#"
+            id="switchToRegister">Registration</a></li>
         </ul>
     </nav>
     </div>
   <!-- =================end navbar========================= -->
-  <section>
-    <h1 id="formTitle">Register</h1>
-      <form id="authForm">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button type="submit">Register</button>
-      </form>
- 
-  
-</section>
-</main>
-<script src="login_logout_register.js">
+  <h2>Welcome,<span id="uname"></span>!</h2>
+  <script src="login_logout_register.js"></script>
+  <script>
+    document.getElementById("uname").innerHTML=localStorage.getItem("id");
   </script>
+<button id="logoutButton">Logout</button>
+</main>
+<script src="login_logout_register.js"></script>
 </body>
 
 <footer>
