@@ -1,0 +1,39 @@
+,<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>User Detail Page</h1>
+    <div id="result-table">
+            <table border="1">
+                <tr>
+                    <th>Name</td>
+                    <th>Address</td>
+                    <th>Email</th>
+                    <th>Phone</td>
+                </tr>
+                <tr>
+                    <td id="first"></td>
+                    <td id="second"></td>
+                    <td id="third"></td>
+                    <td id="fourth"></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+
+  <script>
+    window.onload = function() {
+                document.getElementById('first').innerText = localStorage.getItem('name');
+                document.getElementById('second').innerText = localStorage.getItem('address');
+                document.getElementById('third').innerText = localStorage.getItem('email');
+                document.getElementById('fourth').innerText = localStorage.getItem('phone');
+
+            };
+  </script>
+
+</body>
+</html>
