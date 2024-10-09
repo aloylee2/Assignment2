@@ -44,13 +44,10 @@ authForm.addEventListener("submit", (e) => {
         // Login logic
         const storedUser = JSON.parse(localStorage.getItem(username));
         if (storedUser && storedUser.password === password) {
-            alert("Login successful!");
-            var uname= document.getElementById("username").value;
-            localStorage.setItem("id", uname);
-
-            authForm.reset();
-            window.location.assign("welcome_user.html");
-
+            alert("Login successful!");          
+            localStorage.setItem("id", username);
+            window.location.href='welcome_user.html';
+            // authForm.reset();
 
         } else {
             alert("Invalid username or password.");
@@ -74,3 +71,10 @@ authForm.addEventListener("submit", (e) => {
 //     authForm.classList.remove("hidden");
 //     alert("Logged out successfully.");
 // });
+
+function sendValue(value) {
+  // Store the button value in local storage
+  localStorage.setItem('buttonValue', value);
+  // Redirect to the next page
+  window.location.href = 'confirmpage.html';
+}
