@@ -12,6 +12,7 @@
   
 </head>
 <body>
+  
   <main>
   <!-- =================start Logo========================= -->
   <div class="logo-navbar" id="home">
@@ -30,13 +31,23 @@
     </nav>
     </div>
   <!-- =================end navbar========================= -->
-  <h2>Welcome,<span id="uname"></span>!</h2>
-  <script>
-    document.getElementById("uname").innerHTML=localStorage.getItem("id");
-  </script>
-<button id="logoutButton">Logout</button>
+  <h2>Welcome,<p id="uname"></p>!</h2>
+ 
+
+  
+  
+  
+<div>
+
+</div>
+<!-- <button id="logoutButton">Logout</button> -->
 </main>
-<script src="script.js"></script>
+<script src="script.js">
+
+</script>
+<script>
+  document.getElementById("uname").innerHTML=localStorage.getItem("id");
+</script>
 </body>
 
 <footer>
@@ -81,6 +92,7 @@
     </div>
 
   </div>
+  
 
 </footer>
 </html>

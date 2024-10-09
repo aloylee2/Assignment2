@@ -47,6 +47,7 @@ authForm.addEventListener("submit", (e) => {
             alert("Login successful!");
             var uname= document.getElementById("username").value;
             localStorage.setItem("id", uname);
+
             authForm.reset();
             window.location.assign("welcome_user.html");
 
