@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Add Comment and Images</h1>
+        <form id="commentForm">
+            <textarea id="additionalComment" placeholder="Add your comment here" required></textarea>
+            <input type="file" id="imageUpload" multiple accept="image/*" required>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <script>
+        const commentForm = document.getElementById("commentForm");
+const additionalComment = document.getElementById("additionalComment");
+const imageUpload = document.getElementById("imageUpload");
+
+const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
+
+commentForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const commentData = {
+        username: selectedUser.username,
+        originalComment: selectedUser.comment,
+        additionalComment: additionalComment.value,
+        images: []
+    };
+
+    // Handle image uploads
+    const files = imageUpload.files;
+    for (let i = 0; i < files.length; i++) {
+        commentData.images.push(URL.createObjectURL(files[i])); // Store image URLs
+    }
+
+    // Display or process the commentData as needed
+    console.log(commentData); // You can handle this data (e.g., display, save, etc.)
+
+    // Clear form
+    commentForm.reset();
+    alert("Comment and images submitted!");
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>User and Car Rental Form</h1>
+        <form id="userForm">
+            <input type="text" id="username" placeholder="Your Name" required>
+            <textarea id="userComment" placeholder="Your Comment" required></textarea>
+            <input type="text" id="carPlate" placeholder="Car Plate Number" required>
+            <input type="text" id="carLocation" placeholder="Location of Car" required>
+            <button type="submit">Submit User Info</button>
+        </form>
+    </main>
+    <script>
+        const userForm = document.getElementById("userForm");
+
+userForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const userComment = document.getElementById("userComment").value;
+    const carPlate = document.getElementById("carPlate").value;
+    const carLocation = document.getElementById("carLocation").value;
+
+    // Retrieve existing users from local storage
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Create a new user object
+    const newUser = {
+        username: username,
+        comment: userComment,
+        carPlate: carPlate,
+        carLocation: carLocation,
+        date: new Date().toLocaleString()
+    };
+
+    // Add new user to the existing users array
+    existingUsers.push(newUser);
+
+    // Save updated users array to local storage
+    localStorage.setItem("users", JSON.stringify(existingUsers));
+
+    // Clear the form
+    userForm.reset();
+
+    // Optionally, redirect to the user display page
+    window.location.href = 'test_send.html';
+});
+
+    </script>
+</body>
+</html>

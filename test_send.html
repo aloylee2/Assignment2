@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Comments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>User Comments and Car Rental Details</h1>
+        <div id="userList"></div>
+        <button onclick="window.location.href='index.html'">Go Back</button>
+    </main>
+    <script>
+        const userList = document.getElementById("userList");
+
+// Retrieve users from local storage
+const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+// Check if there are any user entries
+if (existingUsers.length === 0) {
+    userList.innerHTML = "<p>No users available.</p>";
+} else {
+    existingUsers.forEach((item, index) => {
+        const userItem = document.createElement("div");
+        userItem.classList.add("user-item");
+        userItem.innerHTML = `
+            <strong>${item.username}</strong> <em>${item.date}</em>
+            <p>${item.comment}</p>
+            <p>Car Plate: ${item.carPlate}</p>
+            <p>Location: ${item.carLocation}</p>
+            <button onclick="deleteEntry(${index})">Delete</button>
+            <button onclick="goToCommentForm(${index})">Check</button>
+        `;
+        userList.appendChild(userItem);
+    });
+}
+
+function deleteEntry(index) {
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    existingUsers.splice(index, 1); // Remove the entry
+    localStorage.setItem("users", JSON.stringify(existingUsers)); // Update local storage
+    window.location.reload(); // Refresh the page
+}
+
+function goToCommentForm(index) {
+    localStorage.setItem("selectedUser", JSON.stringify(existingUsers[index])); // Store selected user data
+    window.location.href = 'comment.html'; // Navigate to comment form page
+}
+    </script>
+</body>
+</html>

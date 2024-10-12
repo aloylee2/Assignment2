@@ -40,27 +40,31 @@ authForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+
     if (isLogin) {
-        // Login logic
+        // Check for admin credentials
+        if (username === "admin" && password === "admin123") {
+            alert("Admin login successful!");
+            window.location.href = 'adminpage.html';
+            return;
+        }
+
+        // Login logic for regular users
         const storedUser = JSON.parse(localStorage.getItem(username));
         if (storedUser && storedUser.password === password) {
-            alert("Login successful!");          
+            alert("Login successful!");
             localStorage.setItem("id", username);
-            window.location.href='welcome_user.html';
-            // authForm.reset();
-
+            window.location.href = 'welcome_user.html';
         } else {
             alert("Invalid username or password.");
         }
     } else {
         // Register logic
-        if (localStorage.getItem(username)) {
+        if (localStorage.getItem(username) || username === "admin" && password === "admin123") {
             alert("Username already exists.");
             authForm.reset();
         } else {
-            localStorage.setItem(username, JSON.stringify({
-                username, password
-            }));
+            localStorage.setItem(username, JSON.stringify({ username, password }));
             alert("Registration successful!");
             authForm.reset();
         }
