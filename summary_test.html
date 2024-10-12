@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .summary-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="summary-container">
+        <h1>Reservation Summary</h1>
+        <div id="summary"></div>
+        <button onclick="window.location.href='index.html'">Back to Reservation</button>
+    </div>
+
+    <script>
+        // Function to parse query string parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const details = {};
+            for (const [key, value] of params.entries()) {
+                details[key] = value;
+            }
+            return details;
+        }
+
+        // Function to display summary details
+        function displaySummary() {
+            const reservationDetails = getQueryParams();
+            const summaryDiv = document.getElementById('summary');
+            let summaryContent = '';
+
+            for (const [key, value] of Object.entries(reservationDetails)) {
+                summaryContent += `<p><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}</strong>: ${value}</p>`;
+            }
+
+            summaryDiv.innerHTML = summaryContent;
+        }
+
+        // Call displaySummary on page load
+        window.onload = displaySummary;
+    </script>
+</body>
+</html>

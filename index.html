@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   
+  
 </head>
 <body>
   <main>
@@ -41,7 +42,40 @@
       </div>
     </div>
    <!--==================End of banner====================-->
-<!-- =================Start of grid========================= -->
+  <!-- =================Start of silder========================= -->
+   <div class="swiper-container" id="car">
+  <div class="swiper-container-box" id="car">
+    <div class="swiper">
+      <h1 class="swiper-h1">List of electric cars</h1>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide--one">
+          <span>domestic</span>
+          
+        </div>
+        <div class="swiper-slide swiper-slide--two">
+          <span>subtropical</span>
+          
+        </div>
+  
+        <div class="swiper-slide swiper-slide--three">
+          <span>history</span>
+        </div>
+  
+        <div class="swiper-slide swiper-slide--four">
+          <span>Mayans</span>
+          
+        </div>
+  
+        <div class="swiper-slide swiper-slide--five">
+          <span>native</span>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+  <!-- =================Start of grid========================= -->
 <div class="container-cards" id="about">
   <h1 class="cards-h1">Why AzoomCar?</h1>
    <div class="cards">
@@ -84,100 +118,61 @@
    </div>
    </div>
     <!-- =================End of grid========================= -->
-  <!-- =================Start of silder========================= -->
-   <div class="swiper-container" id="car">
-  <div class="swiper-container-box" id="car">
-    <div class="swiper">
-      <h1 class="swiper-h1">List of electric cars</h1>
-      <div class="swiper-wrapper">
-        <div class="swiper-slide swiper-slide--one">
-          <span>domestic</span>
-          
-        </div>
-        <div class="swiper-slide swiper-slide--two">
-          <span>subtropical</span>
-          
-        </div>
-  
-        <div class="swiper-slide swiper-slide--three">
-          <span>history</span>
-        </div>
-  
-        <div class="swiper-slide swiper-slide--four">
-          <span>Mayans</span>
-          
-        </div>
-  
-        <div class="swiper-slide swiper-slide--five">
-          <span>native</span>
-          
-        </div>
-      </div>
-    </div>
-    
-  </div>
-  </div>
   <!-- =================Start of feedback========================= -->
   <div class="feedback-form" id class="feeback">
     <h1 class="feedback-h1">Feedback Form</h1>
     <div class="container">
-      <form>
-    
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-    
-        <label for="pnumber">Phone Number</label>
-        <input type="number" id="pnumber" name="pnumber" placeholder="Your phone number..">
-    
-        <label for="feedback">Feedback</label>
-        <textarea id="feedback" name="feedback" placeholder="Feedback something.." style="height:200px"></textarea>
-    
-        <input type="submit" value="Submit">
-    
-      </form>
+      <form id="feedbackForm" onsubmit="sendFeedback(event)">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" placeholder="Your First Name" required>
+        <label for="feedbackComment">Feedback</label>
+        <textarea id="feedbackComment" placeholder="Your Feedback" rows="4" required></textarea>
+        <button type="submit" id="submitButton">Send Feedback</button>
+    </form>
     </div>
   </div>
    
 </section>
 </main>
+
 <script src="js.js"></script>
-  <script>
+<script src="script.js"></script>
+<script>
+//swiper
+const progressCircle = document.querySelector(".autoplay-progress svg");
+const progressContent = document.querySelector(".autoplay-progress span");
 
-    const progressCircle = document.querySelector(".autoplay-progress svg");
-    const progressContent = document.querySelector(".autoplay-progress span");
-
-  var swiper = new Swiper(".swiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: "auto",
-  autoplay: {
+var swiper = new Swiper(".swiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    autoplay: {
         delay: 2000,
         disableOnInteraction: false
-      },
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 0,
-    depth: 100,
-    modifier: 2,
-    slideShadows: true
-  },
-  keyboard: {
-    enabled: true
-  },
-  mousewheel: {
-    thresholdDelta: 70
-  },
-  spaceBetween: 60,
-  loop: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true
-  }
+    },
+    coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: true
+    },
+    keyboard: {
+        enabled: true
+    },
+    mousewheel: {
+        thresholdDelta: 70
+    },
+    spaceBetween: 60,
+    loop: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+    }
 });
-
-
   </script>
+ 
 </body>
 
 <footer>

@@ -1,3 +1,27 @@
+//feedback open up email 
+function sendFeedback(event) {
+    event.preventDefault(); // Prevent form from submitting normally
+
+    const firstName = document.getElementById('firstName').value;
+    const feedbackComment = document.getElementById('feedbackComment').value;
+    const recipient = 'azoom@gmail.com';
+
+    // Encode the subject and body for the email
+    const subject = 'Feedback from ' + firstName;
+    const body = `Feedback Comment:\n\n${feedbackComment}`;
+
+    // Create the mailto link
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Open the mailto link in the user's email client
+    window.location.href = mailtoLink;
+
+    // Clear the form fields
+    document.getElementById('firstName').value = '';
+    document.getElementById('feedbackComment').value = '';
+}
+
+
 const authForm = document.getElementById("authForm");
 const formTitle = document.getElementById("formTitle");
 const switchForm = document.getElementById("switchForm");
@@ -52,9 +76,9 @@ authForm.addEventListener("submit", (e) => {
         // Login logic for regular users
         const storedUser = JSON.parse(localStorage.getItem(username));
         if (storedUser && storedUser.password === password) {
-            alert("Login successful!");
+            alert("Login successful! Hello, "+username+"!");
             localStorage.setItem("id", username);
-            window.location.href = 'welcome_user.html';
+            window.location.href = 'carselection.html';
         } else {
             alert("Invalid username or password.");
         }
@@ -76,9 +100,12 @@ authForm.addEventListener("submit", (e) => {
 //     alert("Logged out successfully.");
 // });
 
+
+//sending value
+
 function sendValue(value) {
-  // Store the button value in local storage
-  localStorage.setItem('buttonValue', value);
-  // Redirect to the next page
-  window.location.href = 'confirmpage.html';
+    // Store the button value in local storage
+    localStorage.setItem('buttonValue', value);
+    // Redirect to the next page
+    window.location.href = 'testformsavetxt.html';
 }

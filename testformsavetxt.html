@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Reservation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container-reservation {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container-reservation">
+        <h1>Car Reservation Form</h1>
+        <form id="reservationForm" onsubmit="handleSubmit(event)">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Your Full Name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your Email" required>
+            
+            <label for="carModel">Car Model</label>
+            <input type="text" id="carModel" placeholder="Car Model" readonly>
+            
+            <label for="pickupDate">Pickup Date</label>
+            <input type="date" id="pickupDate" required onchange="updateDropDateLimits()">
+            
+            <label for="pickupTime">Pickup Time</label>
+            <input type="time" id="pickupTime" required> 
+            
+            <label for="dropDate">Drop Date</label>
+            <input type="date" id="dropDate" required>
+            
+            <label for="dropTime">Drop Time</label>
+            <input type="time" id="dropTime" required>
+            
+            <label for="creditNumber">Credit Number</label>
+            <input type="text" id="creditNumber" placeholder="Credit Card Number" required>
+            
+            <label for="drivingLicense">Driving License Number</label>
+            <input type="text" id="drivingLicense" placeholder="Driving License Number" required>
+
+            <button type="submit">Reserve Car</button>
+        </form>
+    </div>
+
+    <script>
+         // Retrieve the button value from local storage
+         const value = localStorage.getItem('buttonValue');
+        document.getElementById('carModel').value = value ? value : 'No value sent';
+
+        function setMinPickupDate() {
+            const today = new Date();
+            const formattedToday = today.toISOString().split('T')[0];
+            document.getElementById('pickupDate').setAttribute('min', formattedToday);
+        }
+
+        function updateDropDateLimits() {
+            const pickupDate = document.getElementById('pickupDate').value;
+            const dropDateInput = document.getElementById('dropDate');
+
+            if (pickupDate) {
+                const pickupDateObj = new Date(pickupDate);
+                const minDropDate = new Date(pickupDateObj);
+                const maxDropDate = new Date(pickupDateObj);
+
+                minDropDate.setDate(pickupDateObj.getDate() + 1);
+                maxDropDate.setDate(pickupDateObj.getDate() + 7);
+
+                const formattedMinDropDate = minDropDate.toISOString().split('T')[0];
+                const formattedMaxDropDate = maxDropDate.toISOString().split('T')[0];
+
+                dropDateInput.setAttribute('min', formattedMinDropDate);
+                dropDateInput.setAttribute('max', formattedMaxDropDate);
+            }
+        }
+
+        function generateCarPlateNumber() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let plateNumber = '';
+            for (let i = 0; i < 7; i++) {
+                plateNumber += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return plateNumber;
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const creditCardNumber = document.getElementById('creditNumber').value;
+            const encryptedCreditCard = CryptoJS.AES.encrypt(creditCardNumber, 'your-secret-key').toString(); // Encrypt the credit card number
+
+            const reservationDetails = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                carModel: document.getElementById('carModel').value,
+                pickupDate: document.getElementById('pickupDate').value,
+                pickupTime: document.getElementById('pickupTime').value,
+                dropDate: document.getElementById('dropDate').value,
+                dropTime: document.getElementById('dropTime').value,
+                creditNumber: encryptedCreditCard, // Store encrypted credit card
+                drivingLicense: document.getElementById('drivingLicense').value,
+                carPlateNumber: generateCarPlateNumber(),
+            };
+
+            const lastFourDigits = creditCardNumber.slice(-4); // Get last 4 digits
+
+            const fileContent = `Full Name: ${reservationDetails.fullName}\nEmail: ${reservationDetails.email}\nCar Model: ${reservationDetails.carModel}\nPickup Date: ${reservationDetails.pickupDate}\nPickup Time: ${reservationDetails.pickupTime}\nDrop Date: ${reservationDetails.dropDate}\nDrop Time: ${reservationDetails.dropTime}\nCredit Number: **** **** **** ${lastFourDigits}\nDriving License: ${reservationDetails.drivingLicense}\nCar Plate Number: ${reservationDetails.carPlateNumber}`;
+
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `car_reservation_${reservationDetails.fullName}.txt`;
+            document.body.appendChild(a);
+            a.click();
+
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+
+            const queryString = new URLSearchParams(reservationDetails).toString();
+            window.location.href = `summary_test.html?${queryString}`;
+        }
+
+        window.onload = setMinPickupDate;
+    </script>
+</body>
+</html>

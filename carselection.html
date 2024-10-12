@@ -27,6 +27,12 @@
     </nav>
     </div>
   <!-- =================end navbar========================= -->
+  <h2>Welcome,
+    <form> 
+      <label for="usernameInput">Username:</label>
+      <input type="text" id="usernameInput" readonly>
+  </form>
+  </h2>
   <section>
     <div class="car-container-cards" id="car">
         <h1 class="car-cards-h1">Car Available</h1>
@@ -150,6 +156,9 @@
 </section>
 </main>
 <script src="script.js"></script>
+<script>
+document.getElementById("usernameInput").value = localStorage.getItem("id") || 'No user logged in';
+</script>
 </body>
 
 <footer>
