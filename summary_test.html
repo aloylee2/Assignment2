@@ -9,65 +9,80 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
+            padding: 20px;
         }
-
-        .summary-container {
+        .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            width: 100%;
             max-width: 600px;
+            margin: auto;
         }
-
-        h1 {
+        h1, h2 {
             text-align: center;
         }
-
-        p {
-            margin: 10px 0;
+        .navbar, .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="summary-container">
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>Car Reservation System</h2>
+    </div>
+
+    <!-- Summary Container -->
+    <div class="container">
         <h1>Reservation Summary</h1>
-        <div id="summary"></div>
-        <button onclick="window.location.href='index.html'">Back to Reservation</button>
+        <div id="summaryDetails"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Car Reservation System</p>
     </div>
 
     <script>
-        // Function to parse query string parameters
+        // Function to get query parameters from the URL
         function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            const details = {};
-            for (const [key, value] of params.entries()) {
-                details[key] = value;
-            }
-            return details;
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryArray = queryString.split("&");
+            queryArray.forEach(param => {
+                const [key, value] = param.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+            return params;
         }
 
-        // Function to display summary details
-        function displaySummary() {
-            const reservationDetails = getQueryParams();
-            const summaryDiv = document.getElementById('summary');
-            let summaryContent = '';
-
-            for (const [key, value] of Object.entries(reservationDetails)) {
-                summaryContent += `<p><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}</strong>: ${value}</p>`;
-            }
-
-            summaryDiv.innerHTML = summaryContent;
+        // Function to display reservation details
+        function displayReservationDetails() {
+            const details = getQueryParams();
+            const summaryHTML = `
+                <p><strong>Full Name:</strong> ${details.fullName}</p>
+                <p><strong>Email:</strong> ${details.email}</p>
+                <p><strong>Car Model:</strong> ${details.carModel}</p>
+                <p><strong>Car Price:</strong> ${details.carPrice}</p>
+                <p><strong>Pickup Date:</strong> ${details.pickupDate}</p>
+                <p><strong>Pickup Time:</strong> ${details.pickupTime}</p>
+                <p><strong>Drop Date:</strong> ${details.dropDate}</p>
+                <p><strong>Drop Time:</strong> ${details.dropTime}</p>
+                <p><strong>Car Plate Number:</strong> ${details.carPlateNumber}</p>
+            `;
+            document.getElementById('summaryDetails').innerHTML = summaryHTML;
         }
 
-        // Call displaySummary on page load
-        window.onload = displaySummary;
+        window.onload = displayReservationDetails;
     </script>
+
 </body>
 </html>
