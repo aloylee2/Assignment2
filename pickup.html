@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pick up car rental service - Report damages easily.">
+    <meta name="keywords" content="Car Rental, Pickup, Report Damages">
+    <title>Pick Up Car</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            max-width: auto;
+            margin: auto;
+            text-align: center;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .navbar, .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: 20px;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .image-card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            height: 150px; /* Fixed height for square effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-grid-card {
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 5px;
+            text-align: center;
+        }
+        .image-card img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .damage-textarea {
+            margin-top: 20px;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .upload-info {
+            text-align: center;
+            margin: 10px 0;
+            color: #555;
+        }
+        .submit-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+        .notification.success {
+            background-color: #28a745;
+            color: white;
+        }
+        .notification.error {
+            background-color: #dc3545;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: 1fr; /* Stack images in one column */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- =================start Logo========================= -->
+        <div class="logo-navbar" id="home">
+          <img src="image/logo(withoutbackground).png" width="200" height="200">
+        </div>
+        <!-- =================End Logo========================= -->
+        <!-- =================Start navbar========================= -->
+          <nav class="navbar">
+              <ul class="top-nav-uil">
+                <div class="navbar-middle">
+                <li class="top-nav-li"><a href="#home">Home</a></li>
+                <li class="top-nav-li"><a href="#" id="switchToLogin">Login</a></li>
+                <li class="top-nav-li"><a href="#about">About</a></li>
+              </ul>
+          </nav>
+          </div>
+
+    <!-- Summary Container -->
+    <div class="container">
+        <h1>Pick Up Car</h1>
+        <div id="pickupDetails"></div>
+    </div>
+    <br>
+    
+    <!-- Damage Report Container -->
+    <div class="container">
+        <h2>Report Damages</h2>
+        <div class="upload-info">Please upload images for Front, Back, Left, and Right.</div>
+
+        <div class="image-grid">
+            <div class="image-grid-card">
+                <label for="frontImage">Front:</label>
+                <input type="file" id="frontImage" accept="image/*" onchange="previewImage('frontImage', 'frontPreview')">
+                <div class="image-card" id="frontPreview"></div>
+            </div>
+            <div class="image-grid-card">
+                <label for="backImage">Back:</label>
+                <input type="file" id="backImage" accept="image/*" onchange="previewImage('backImage', 'backPreview')">
+                <div class="image-card" id="backPreview"></div>
+            </div>
+            <div class="image-grid-card">
+                <label for="leftImage">Left:</label>
+                <input type="file" id="leftImage" accept="image/*" onchange="previewImage('leftImage', 'leftPreview')">
+                <div class="image-card" id="leftPreview"></div>
+            </div>
+            <div class="image-grid-card">
+                <label for="rightImage">Right:</label>
+                <input type="file" id="rightImage" accept="image/*" onchange="previewImage('rightImage', 'rightPreview')">
+                <div class="image-card" id="rightPreview"></div>
+            </div>
+        </div>
+        <textarea class="damage-textarea" id="damageReport" placeholder="Describe damages to the car..."></textarea>
+
+        <button class="submit-button" onclick="submitReport()">Submit Report</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-leftside">
+          <img src="image/logo(withoutbackground).png" width="200px" height="200px">
+          <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+        </div>
+      
+        <div class="footer-middle">
+          <div>
+            <i class="fa fa-map-marker"></i>
+            <p>463 Clementi Rd, Singapore 599494</p>
+          </div>
+          <div>
+            <i class="fa fa-phone"></i>
+            <p>+65 6248 9777</p>
+          </div>
+          <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+          </div>
+        </div>
+      
+        <div class="footer-rightside">
+          <p class="footer-company-about">
+            <span>About the company</span>
+            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+          </p>
+          <div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+          </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryArray = queryString.split("&");
+            queryArray.forEach(param => {
+                const [key, value] = param.split("=");
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        // Function to display reservation details on pickup page
+        function displayPickupDetails() {
+            const details = getQueryParams();
+            if (!details.fullName || !details.email) {
+                document.getElementById('pickupDetails').innerHTML = '<p>Error: Missing reservation details.</p>';
+                return;
+            }
+            
+            const pickupHTML = `
+                <p><strong>Full Name:</strong> ${details.fullName || 'N/A'}</p>
+                <p><strong>Email:</strong> ${details.email || 'N/A'}</p>
+                <p><strong>Car Model:</strong> ${details.carModel || 'N/A'}</p>
+                <p><strong>Car Price:</strong> ${details.carPrice || 'N/A'}</p>
+                <p><strong>Pickup Date:</strong> ${details.pickupDate || 'N/A'}</p>
+                <p><strong>Pickup Time:</strong> ${details.pickupTime || 'N/A'}</p>
+                <p><strong>Drop Date:</strong> ${details.dropDate || 'N/A'}</p>
+                <p><strong>Drop Time:</strong> ${details.dropTime || 'N/A'}</p>
+                <p><strong>Car Plate Number:</strong> ${details.carPlateNumber || 'N/A'}</p>
+            `;
+            document.getElementById('pickupDetails').innerHTML = pickupHTML;
+        }
+
+        // Function to preview uploaded images
+        function previewImage(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            preview.innerHTML = ''; // Clear previous images
+
+            const file = input.files[0];
+            if (file) {
+                const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (JPEG, PNG, GIF).');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgCard = document.createElement('div');
+                    imgCard.classList.add('image-card');
+                    imgCard.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+                    preview.appendChild(imgCard);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to handle the submission of the report
+        function submitReport() {
+            const damageReport = document.getElementById('damageReport').value.trim();
+            if (!damageReport) {
+                showNotification('Please describe the damages before submitting.', 'error');
+                return;
+            }
+
+            const images = {
+                front: document.getElementById('frontImage').files[0],
+                back: document.getElementById('backImage').files[0],
+                left: document.getElementById('leftImage').files[0],
+                right: document.getElementById('rightImage').files[0]
+            };
+
+            const details = getQueryParams();
+            let reportContent = `Pickup Details:\n`;
+            reportContent += `
+                Full Name: ${details.fullName || 'N/A'}
+                Email: ${details.email || 'N/A'}
+                Car Model: ${details.carModel || 'N/A'}
+                Car Price: ${details.carPrice || 'N/A'}
+                Pickup Date: ${details.pickupDate || 'N/A'}
+                Pickup Time: ${details.pickupTime || 'N/A'}
+                Drop Date: ${details.dropDate || 'N/A'}
+                Drop Time: ${details.dropTime || 'N/A'}
+                Car Plate Number: ${details.carPlateNumber || 'N/A'}
+
+                Damage Report:
+                ${damageReport}
+
+                Images:
+            `;
+
+            const imagePromises = Object.keys(images).map(key => {
+                return new Promise((resolve) => {
+                    const file = images[key];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
+                            resolve();
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: No image uploaded\n`;
+                        resolve();
+                    }
+                });
+            });
+
+            Promise.all(imagePromises).then(() => {
+                console.log(reportContent); // Check content
+                downloadReport(reportContent);
+            });
+        }
+
+        // Function to download the report as a text file
+        function downloadReport(content) {
+            const details = getQueryParams(); // Ensure this retrieves data
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `pre_pickup_report_${details.fullName || 'report'}.txt`; // Fallback filename
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showNotification("Report submitted successfully!", 'success');
+        }
+
+        // Function to display notifications
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        window.onload = displayPickupDetails;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Reported Damages</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <!-- =================start Logo========================= -->
+        <div class="logo-navbar" id="home">
+          <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
+        <!-- =================End Logo========================= -->
+        <!-- =================Start navbar========================= -->
+          <nav class="navbar">
+              <ul class="top-nav-uil">
+                <div class="navbar-middle">
+                <li class="top-nav-li"><a href="#home">Home</a></li>
+                <li class="top-nav-li"><a href="#" id="switchToLogin">Login</a></li>
+                <li class="top-nav-li"><a href="#about">About</a></li>
+              </ul>
+          </nav>
+          </div>
+
+    <div class="container_report">
+        <h1 class="h1_report">Display Reported Damages</h1>
+        <div class="upload-info">Upload your report text file:</div>
+        <br>
+        <input type="file" id="reportFile" accept=".txt">
+        <button class="submit-button-report" onclick="readReport()">Load Report</button>
+        
+        <div class="report-content" id="reportContent"></div>
+        <div class="image-grid" id="imageGrid"></div>
+    </div>
+
+    <script>
+        function readReport() {
+            const fileInput = document.getElementById('reportFile');
+            const reportContentDiv = document.getElementById('reportContent');
+            const imageGrid = document.getElementById('imageGrid');
+            reportContentDiv.innerHTML = ''; // Clear previous report content
+            imageGrid.innerHTML = ''; // Clear previous images
+
+            if (fileInput.files.length === 0) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const content = e.target.result;
+                displayReport(content);
+            };
+
+            reader.readAsText(file);
+        }
+
+        function displayReport(content) {
+            const reportContentDiv = document.getElementById('reportContent');
+            const imageGrid = document.getElementById('imageGrid');
+            const lines = content.split('\n');
+            let reportText = '';
+
+            lines.forEach(line => {
+                const base64Data = getImageBase64(line);
+                if (base64Data) {
+                    // If line contains an image URL, ignore it
+                    return;
+                }
+                // Otherwise, append the line to the report text
+                reportText += line + '\n';
+            });
+
+            reportContentDiv.textContent = reportText;
+
+            lines.forEach(line => {
+                const base64Data = getImageBase64(line);
+                if (base64Data) {
+                    const imgCard = document.createElement('div');
+                    imgCard.className = 'image-card';
+
+                    // Determine which side the image corresponds to
+                    const label = line.split(':')[0]; // Get the label (e.g., Front, Back)
+                    imgCard.innerHTML = `
+                        <img src="data:image/png;base64,${base64Data}" alt="${label} Image">
+                        <div class="image-label">${label}</div>
+                    `;
+                    imageGrid.appendChild(imgCard);
+                }
+            });
+        }
+
+        function getImageBase64(line) {
+            const base64Match = line.match(/(Front|Back|Left|Right): data:image\/[^;]+;base64,([A-Za-z0-9+/=]+)/);
+            return base64Match ? base64Match[0].split(',')[1] : null;
+        }
+    </script>
+
+</body>
+<footer>
+
+    <div class="footer-leftside">
+      <img src="image/logo(withoutbackground).png" width="200px" height="200px">
+      <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+    </div>
+  
+    <div class="footer-middle">
+  
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>463 Clementi Rd, Singapore 599494</p>
+      </div>
+  
+      <div>
+        <i class="fa fa-phone"></i>
+        <p>+65 6248 9777</p>
+      </div>
+  
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+      </div>
+  
+    </div>
+  
+    <div class="footer-rightside">
+  
+      <p class="footer-company-about">
+        <span>About the company</span>
+        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+      </p>
+  
+      <div class="footer-icons">
+  
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+  
+      </div>
+  
+    </div>
+  
+  </footer>
+</html>

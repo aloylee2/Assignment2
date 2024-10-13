@@ -447,6 +447,76 @@ justify-content: center;
     font-size: 16px;
 }
 
+/* display_report.csss */
+
+.container_report {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  text-align: center; /* Center-align text and elements within this container */
+}
+.h1_report {
+  text-align: center;
+}
+.upload-info {
+  text-align: center;
+  margin: 10px 0;
+  color: #555;
+  margin: 10px 0;
+}
+.container_report input[type="file"] {
+  display: inline-block; /* Allow it to be centered with the button */
+  margin: 10px 0; /* Add some space around the input */
+  margin-left: 70px;
+}
+.submit-button-report {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+.submit-button:hover {
+  background-color: #0056b3;
+}
+.report-content {
+  white-space: pre-wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.image-card {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.image-card img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.image-label {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
       
 
 /* this is for media screen*/

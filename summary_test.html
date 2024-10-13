@@ -31,6 +31,22 @@
         .footer {
             margin-top: 20px;
         }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +60,7 @@
     <div class="container">
         <h1>Reservation Summary</h1>
         <div id="summaryDetails"></div>
+        <button class="button" onclick="pickUpCar()">Pick Up Car</button>
     </div>
 
     <!-- Footer -->
@@ -79,6 +96,13 @@
                 <p><strong>Car Plate Number:</strong> ${details.carPlateNumber}</p>
             `;
             document.getElementById('summaryDetails').innerHTML = summaryHTML;
+        }
+
+        // Function to handle car pick-up action
+        function pickUpCar() {
+            const details = getQueryParams();
+            const params = new URLSearchParams(details).toString();
+            window.location.href = `pickup.html?${params}`;
         }
 
         window.onload = displayReservationDetails;
