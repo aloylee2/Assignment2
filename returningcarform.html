@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>User and Car Rental Form</h1>
+        <form id="userForm">
+            <input type="text" id="fullName" placeholder="Your Full Name" required>
+            <input type="text" id="carPlate" placeholder="Car Plate Number" required>
+            <input type="text" id="carLocation" placeholder="Location of Car" required>
+            <input type="file" id="pickupCar" accept=".txt" required> <!-- Accepts only .txt files -->
+            <input type="file" id="returnCar" accept=".txt" required> <!-- Accepts only .txt files -->
+            <button type="button" onclick="submitUserInfo()">Submit User Info</button>
+        </form>
+    </main>
+    <script>
+        function submitUserInfo() {
+            const fullName = document.getElementById("fullName").value;
+            const carPlate = document.getElementById("carPlate").value;
+            const carLocation = document.getElementById("carLocation").value;
+
+            // Get files and check if they are text files
+            const pickupCarFile = document.getElementById("pickupCar").files[0];
+            const returnCarFile = document.getElementById("returnCar").files[0];
+
+            if (pickupCarFile && pickupCarFile.type !== "text/plain") {
+                alert("Please upload a valid text file for Pickup Car.");
+                return;
+            }
+            if (returnCarFile && returnCarFile.type !== "text/plain") {
+                alert("Please upload a valid text file for Return Car.");
+                return;
+            }
+
+            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+            const newUser = {
+                fullName: fullName,
+                carPlate: carPlate,
+                carLocation: carLocation,
+                pickupCar: pickupCarFile ? pickupCarFile.name : null, // Store the file name if selected
+                returnCar: returnCarFile ? returnCarFile.name : null, // Store the file name if selected
+                date: new Date().toLocaleString()
+            };
+
+            existingUsers.push(newUser);
+
+            try {
+                localStorage.setItem("users", JSON.stringify(existingUsers));
+                document.getElementById("userForm").reset(); // Clear the form
+                alert('User information submitted successfully!'); // Feedback message
+                window.location.href = 'test_send.html';
+            } catch (error) {
+                alert('There was an error saving your information. Please try again.'); // Error handling
+            }
+        }
+    </script>
+</body>
+</html>

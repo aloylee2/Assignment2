@@ -347,7 +347,7 @@ function submitReport() {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `pre_pickup_report_${details.fullName}.txt`;
+            a.download = 'pre_pickup_report.txt';
             document.body.appendChild(a);
             a.click();
             setTimeout(() => {
