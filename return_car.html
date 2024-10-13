@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pick up car rental service - Report damages easily.">
+    <meta name="keywords" content="Car Rental, Pickup, Report Damages">
     <title>Pick Up Car</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,13 +37,13 @@
         .footer {
             margin-top: 20px;
         }
-        .image-grid {
+        .car-return-image-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-top: 20px;
         }
-        .image-card {
+        .car-return-image-card {
             background-color: #f9f9f9;
             border-radius: 5px;
             padding: 10px;
@@ -51,19 +53,19 @@
             align-items: center;
             justify-content: center;
         }
-        .image-grid-card {
+        .car-return-image-grid-card {
             border: 1px solid black;
             border-radius: 15px;
             padding: 5px;
             text-align: center;
         }
-        .image-card img {
+        .car-return-image-card img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 5px;
             object-fit: cover;
         }
-        .damage-textarea {
+        .car-return-damage-textarea {
             margin-top: 20px;
             width: 100%;
             height: 100px;
@@ -118,7 +120,8 @@
     <main>
         <!-- =================start Logo========================= -->
         <div class="logo-navbar" id="home">
-          <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
+          <img src="image/logo(withoutbackground).png" width="200" height="200">
+        </div>
         <!-- =================End Logo========================= -->
         <!-- =================Start navbar========================= -->
           <nav class="navbar">
@@ -130,129 +133,110 @@
               </ul>
           </nav>
           </div>
-
-    <!-- Summary Container -->
-    <div class="container">
-        <h1>Pick Up Car</h1>
-        <div id="pickupDetails"></div>
-    </div>
-    <br>
     
     <!-- Damage Report Container -->
-    <div class="container">
-        <h2>Report Damages</h2>
-        <div class="upload-info">Please upload images for Front, Back, Left, and Right.</div>
+    <div class="car-return-container">
+        <h2> Report Damages</h2>
+        <div class="car-return-upload-info">Please upload images for Front, Back, Left, and Right.</div>
 
-        <div class="image-grid">
-            <div class="image-grid-card">
-                <label for="frontImage">Front:</label>
-                <input type="file" id="frontImage" accept="image/*" onchange="previewImage('frontImage', 'frontPreview')">
-                <div class="image-card" id="frontPreview"></div>
+        <div class="car-return-image-grid">
+            <div class="car-return-image-grid-card">
+                <label for="carReturnFrontImage">Front:</label>
+                <input type="file" id="carReturnFrontImage" accept="image/*" onchange="carReturnPreviewImage('carReturnFrontImage', 'carReturnFrontPreview')">
+                <div class="car-return-image-card" id="carReturnFrontPreview"></div>
             </div>
-            <div class="image-grid-card">
-                <label for="backImage">Back:</label>
-                <input type="file" id="backImage" accept="image/*" onchange="previewImage('backImage', 'backPreview')">
-                <div class="image-card" id="backPreview"></div>
+            <div class="car-return-image-grid-card">
+                <label for="carReturnBackImage">Back:</label>
+                <input type="file" id="carReturnBackImage" accept="image/*" onchange="carReturnPreviewImage('carReturnBackImage', 'carReturnBackPreview')">
+                <div class="car-return-image-card" id="carReturnBackPreview"></div>
             </div>
-            <div class="image-grid-card">
-                <label for="leftImage">Left:</label>
-                <input type="file" id="leftImage" accept="image/*" onchange="previewImage('leftImage', 'leftPreview')">
-                <div class="image-card" id="leftPreview"></div>
+            <div class="car-return-image-grid-card">
+                <label for="carReturnLeftImage">Left:</label>
+                <input type="file" id="carReturnLeftImage" accept="image/*" onchange="carReturnPreviewImage('carReturnLeftImage', 'carReturnLeftPreview')">
+                <div class="car-return-image-card" id="carReturnLeftPreview"></div>
             </div>
-            <div class="image-grid-card">
-                <label for="rightImage">Right:</label>
-                <input type="file" id="rightImage" accept="image/*" onchange="previewImage('rightImage', 'rightPreview')">
-                <div class="image-card" id="rightPreview"></div>
+            <div class="car-return-image-grid-card">
+                <label for="carReturnRightImage">Right:</label>
+                <input type="file" id="carReturnRightImage" accept="image/*" onchange="carReturnPreviewImage('carReturnRightImage', 'carReturnRightPreview')">
+                <div class="car-return-image-card" id="carReturnRightPreview"></div>
             </div>
         </div>
-        <textarea class="damage-textarea" id="damageReport" placeholder="Describe damages to the car..."></textarea>
+        <textarea class="car-return-damage-textarea" id="carReturnDamageReport" placeholder="Describe damages to the car..."></textarea>
 
-        <button class="submit-button" onclick="submitReport()">Submit Report</button>
+        <button class="car-return-submit-button" onclick="carReturnSubmitReport()">Submit Report</button>
     </div>
 
     <!-- Footer -->
     <footer>
-
         <div class="footer-leftside">
           <img src="image/logo(withoutbackground).png" width="200px" height="200px">
           <h2 class="footer-company-name">Azoom car rental © 2024</h2>
         </div>
       
         <div class="footer-middle">
-      
           <div>
             <i class="fa fa-map-marker"></i>
-            <p><span>463 Clementi Rd, Singapore 599494</p>
+            <p>463 Clementi Rd, Singapore 599494</p>
           </div>
-      
           <div>
             <i class="fa fa-phone"></i>
             <p>+65 6248 9777</p>
           </div>
-      
           <div>
             <i class="fa fa-envelope"></i>
             <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
           </div>
-      
         </div>
       
         <div class="footer-rightside">
-      
           <p class="footer-company-about">
             <span>About the company</span>
             Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
           </p>
-      
           <div class="footer-icons">
-      
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>
-      
           </div>
-      
         </div>
-      
-      </footer>
+    </footer>
 
     <script>
         // Function to get query parameters from the URL
-        function getQueryParams() {
-            const params = {};
+        function carReturnGetQueryParams() {
+            const carReturnParams = {};
             const queryString = window.location.search.substring(1);
             const queryArray = queryString.split("&");
             queryArray.forEach(param => {
                 const [key, value] = param.split("=");
-                params[decodeURIComponent(key)] = decodeURIComponent(value);
+                carReturnParams[decodeURIComponent(key)] = decodeURIComponent(value);
             });
-            return params;
+            return carReturnParams;
         }
 
         // Function to display reservation details on pickup page
-        function displayPickupDetails() {
-            const details = getQueryParams();
-            if (!details.fullName || !details.email) {
+        function carReturnDisplayPickupDetails() {
+            const carReturnDetails = carReturnGetQueryParams();
+            if (!carReturnDetails.fullName || !carReturnDetails.email) {
                 document.getElementById('pickupDetails').innerHTML = '<p>Error: Missing reservation details.</p>';
                 return;
             }
             
-            const pickupHTML = `
-                <p><strong>Full Name:</strong> ${details.fullName || 'N/A'}</p>
-                <p><strong>Email:</strong> ${details.email || 'N/A'}</p>
-                <p><strong>Car Model:</strong> ${details.carModel || 'N/A'}</p>
-                <p><strong>Car Price:</strong> ${details.carPrice || 'N/A'}</p>
-                <p><strong>Pickup Date:</strong> ${details.pickupDate || 'N/A'}</p>
-                <p><strong>Pickup Time:</strong> ${details.pickupTime || 'N/A'}</p>
-                <p><strong>Drop Date:</strong> ${details.dropDate || 'N/A'}</p>
-                <p><strong>Drop Time:</strong> ${details.dropTime || 'N/A'}</p>
-                <p><strong>Car Plate Number:</strong> ${details.carPlateNumber || 'N/A'}</p>
+            const carReturnPickupHTML = `
+                <p><strong>Full Name:</strong> ${carReturnDetails.fullName || 'N/A'}</p>
+                <p><strong>Email:</strong> ${carReturnDetails.email || 'N/A'}</p>
+                <p><strong>Car Model:</strong> ${carReturnDetails.carModel || 'N/A'}</p>
+                <p><strong>Car Price:</strong> ${carReturnDetails.carPrice || 'N/A'}</p>
+                <p><strong>Pickup Location:</strong> ${carReturnDetails.pickupLocation || 'N/A'}</p>
+                <p><strong>Pickup Date:</strong> ${carReturnDetails.pickupDate || 'N/A'}</p>
+                <p><strong>Pickup Time:</strong> ${carReturnDetails.pickupTime || 'N/A'}</p>
+                <p><strong>Phone Number:</strong> ${carReturnDetails.phone || 'N/A'}</p>
             `;
-            document.getElementById('pickupDetails').innerHTML = pickupHTML;
+            document.getElementById('pickupDetails').innerHTML = carReturnPickupHTML;
         }
 
         // Function to preview uploaded images
-        function previewImage(inputId, previewId) {
+        function carReturnPreviewImage(inputId, previewId) {
             const input = document.getElementById(inputId);
             const preview = document.getElementById(previewId);
             preview.innerHTML = ''; // Clear previous images
@@ -268,7 +252,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imgCard = document.createElement('div');
-                    imgCard.classList.add('image-card');
+                    imgCard.classList.add('car-return-image-card');
                     imgCard.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
                     preview.appendChild(imgCard);
                 }
@@ -277,89 +261,72 @@
         }
 
         // Function to handle the submission of the report
-        // Function to handle the submission of the report
-function submitReport() {
-    const damageReport = document.getElementById('damageReport').value.trim();
-    if (!damageReport) {
-        showNotification('Please describe if there is a damages or not before submitting.', 'error');
-        return;
-    }
+        function carReturnSubmitReport() {
+            const carReturnDamageReport = document.getElementById('carReturnDamageReport').value.trim();
+            if (!carReturnDamageReport) {
+                carReturnShowNotification('Please describe the damages before submitting.', 'error');
+                return;
+            }
 
-    const images = {
-        front: document.getElementById('frontImage').files[0],
-        back: document.getElementById('backImage').files[0],
-        left: document.getElementById('leftImage').files[0],
-        right: document.getElementById('rightImage').files[0]
-    };
-
-    const details = getQueryParams();
-    let reportContent = `Pickup Details:\n
-        Full Name: ${details.fullName || 'N/A'}
-        Email: ${details.email || 'N/A'}
-        Car Model: ${details.carModel || 'N/A'}
-        Car Price: ${details.carPrice || 'N/A'}
-        Pickup Date: ${details.pickupDate || 'N/A'}
-        Pickup Time: ${details.pickupTime || 'N/A'}
-        Drop Date: ${details.dropDate || 'N/A'}
-        Drop Time: ${details.dropTime || 'N/A'}
-        Car Plate Number: ${details.carPlateNumber || 'N/A'}
-
-        Damage Report:\n
-        ${damageReport}\n
-
-        Images:\n
-    `;
-
-    const imageKeys = Object.keys(images);
-    let imagesProcessed = 0;
-
-    imageKeys.forEach((key, index) => {
-        const file = images[key];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Add base64 string to the report
-                reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
-                imagesProcessed++;
-
-                // Check if all images have been processed
-                if (imagesProcessed === imageKeys.length) {
-                    downloadReport(reportContent);
-                }
+            const carReturnImages = {
+                front: document.getElementById('carReturnFrontImage').files[0],
+                back: document.getElementById('carReturnBackImage').files[0],
+                left: document.getElementById('carReturnLeftImage').files[0],
+                right: document.getElementById('carReturnRightImage').files[0]
             };
-            reader.readAsDataURL(file);
-        } else {
-            reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: No image uploaded\n`;
-            imagesProcessed++;
+
+            const carReturnDetails = carReturnGetQueryParams();
+            let carReturnReportContent = `Pickup Details:\n`;
+            carReturnReportContent += `
+
+                Damage Report:
+                ${carReturnDamageReport}
+
+                Images:
+            `;
+
+            const imagePromises = Object.keys(carReturnImages).map(key => {
+                return new Promise((resolve) => {
+                    const file = carReturnImages[key];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            carReturnReportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
+                            resolve();
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        carReturnReportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: No image uploaded\n`;
+                        resolve();
+                    }
+                });
+            });
+
+            Promise.all(imagePromises).then(() => {
+                console.log(carReturnReportContent); // Check content
+                carReturnDownloadReport(carReturnReportContent);
+            });
         }
-    });
-
-    // Download if no images are uploaded
-    if (imagesProcessed === imageKeys.length) {
-        downloadReport(reportContent);
-    }
-}
-
 
         // Function to download the report as a text file
-        function downloadReport(content) {
+        function carReturnDownloadReport(content) {
+            const carReturnDetails = carReturnGetQueryParams(); // Ensure this retrieves data
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
+            
             const a = document.createElement('a');
             a.href = url;
-            a.download = `pre_pickup_report_${details.fullName}.txt`;
+            a.download = `car_return_report.txt`; // Fallback filename
             document.body.appendChild(a);
             a.click();
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 0);
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
 
-            showNotification("Report submitted successfully!", 'success');
+            carReturnShowNotification("Report submitted successfully!", 'success');
         }
 
         // Function to display notifications
-        function showNotification(message, type) {
+        function carReturnShowNotification(message, type) {
             const notification = document.createElement('div');
             notification.textContent = message;
             notification.className = `notification ${type}`;
@@ -369,7 +336,7 @@ function submitReport() {
             }, 3000);
         }
 
-        window.onload = displayPickupDetails;
+        window.onload = carReturnDisplayPickupDetails;
     </script>
 
 </body>
