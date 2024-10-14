@@ -769,6 +769,20 @@ button{
   }
 }
 
+/* commentpage (admin) */
+ /* Container for image previews */
+ .image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+/* Individual image preview styles */
+.image-preview-container img {
+  max-width: 100px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 /* this is for media screen*/
 @media screen and (max-width: 800px) {
   .top-nav-li{

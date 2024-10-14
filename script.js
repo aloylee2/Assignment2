@@ -630,3 +630,91 @@ function submitUserInfo() {
         alert('Car unable return!. Please try again.'); // Error handling
     }
 }
+
+//comment.js(admin)
+const commentForm = document.getElementById("commentForm");
+        const additionalComment = document.getElementById("additionalComment");
+        const priceInput = document.getElementById("price");
+        const imageUpload = document.getElementById("imageUpload");
+        const imagePreview = document.getElementById("imagePreview");
+        
+        const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
+
+        // Function to initialize event listeners
+        function initializeEventListeners() {
+            imageUpload.addEventListener("change", handleImageUpload);
+            commentForm.addEventListener("submit", handleSubmit);
+        }
+
+        // Function to handle image uploads
+        function handleImageUpload() {
+            imagePreview.innerHTML = ''; // Clear previous previews
+            const files = imageUpload.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const img = document.createElement("img");
+                img.src = URL.createObjectURL(files[i]);
+                img.alt = "Image preview";
+                imagePreview.appendChild(img);
+            }
+        }
+
+        // Function to handle form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const commentData = gatherCommentData();
+            downloadReport(commentData);
+            alert(`Charging $${commentData.price.toFixed(2)} to the customer credit card.`);
+            
+            console.log(commentData);
+            resetForm();
+            alert("Comment, images, and price submitted! Report downloaded.");
+            window.location.href = 'returnedpageadmin.html';
+        }
+
+        // Function to gather comment data
+        function gatherCommentData() {
+            const commentData = {
+                username: selectedUser.username,
+                originalComment: selectedUser.comment,
+                additionalComment: additionalComment.value,
+                price: parseFloat(priceInput.value),
+                images: []
+            };
+
+            const files = imageUpload.files;
+            for (let i = 0; i < files.length; i++) {
+                commentData.images.push(URL.createObjectURL(files[i]));
+            }
+            return commentData;
+        }
+
+        // Function to download the report
+        function downloadReport(commentData) {
+            const reportContent = `
+                Check for Damages to the Car Report
+                ------------------------------------
+                Username: ${commentData.username}
+                Original Comment: ${commentData.originalComment}
+                Additional Comment: ${commentData.additionalComment}
+                Price: $${commentData.price.toFixed(2)}
+                Images: ${commentData.images.join(', ')}
+            `.trim();
+
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'check_for_damages_report.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up
+        }
+
+        // Function to reset the form
+        function resetForm() {
+            commentForm.reset();
+            imagePreview.innerHTML = ''; // Clear the image previews
+        }

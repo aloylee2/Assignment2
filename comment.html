@@ -5,20 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check for Damages</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Container for image previews */
-        .image-preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-        /* Individual image preview styles */
-        .image-preview-container img {
-            max-width: 100px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <main>
@@ -43,12 +29,15 @@
         
         <h1>Check for Damages to the Car</h1>
         <form id="commentForm">
+            <label for="additionalComment">Additional Comment:</label>
             <textarea id="additionalComment" placeholder="Add your comment here" required></textarea>
+            
+            <label for="imageUpload">Upload Images:</label>
             <input type="file" id="imageUpload" multiple accept="image/*" required>
             
-            <!-- Image preview container moved above the price input -->
             <div class="image-preview-container" id="imagePreview"></div> <!-- Container for image previews -->
             
+            <label for="price">Enter Price:</label>
             <input type="number" id="price" placeholder="Enter price" required min="0" step="0.01">
             <button type="submit">Submit</button>
         </form>
@@ -88,74 +77,8 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        const commentForm = document.getElementById("commentForm");
-        const additionalComment = document.getElementById("additionalComment");
-        const priceInput = document.getElementById("price");
-        const imageUpload = document.getElementById("imageUpload");
-        const imagePreview = document.getElementById("imagePreview");
-
-        const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
-
-        imageUpload.addEventListener("change", function () {
-            // Clear previous previews
-            imagePreview.innerHTML = '';
-
-            const files = imageUpload.files;
-            for (let i = 0; i < files.length; i++) {
-                const img = document.createElement("img");
-                img.src = URL.createObjectURL(files[i]);
-                img.alt = "Image preview";
-                imagePreview.appendChild(img);
-            }
-        });
-
-        commentForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const commentData = {
-                username: selectedUser.username,
-                originalComment: selectedUser.comment,
-                additionalComment: additionalComment.value,
-                price: parseFloat(priceInput.value), // Get the price
-                images: []
-            };
-
-            const files = imageUpload.files;
-            for (let i = 0; i < files.length; i++) {
-                commentData.images.push(URL.createObjectURL(files[i]));
-            }
-
-            // Create the text file content
-            const reportContent = `
-                Check for Damages to the Car Report
-                ------------------------------------
-                Username: ${commentData.username}
-                Original Comment: ${commentData.originalComment}
-                Additional Comment: ${commentData.additionalComment}
-                Price: $${commentData.price.toFixed(2)}
-                Images: ${commentData.images.join(', ')}
-            `.trim();
-
-            // Create a Blob and trigger download
-            const blob = new Blob([reportContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'check_for_damages_report.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url); // Clean up
-
-            // Simulate charging the credit card (placeholder)
-            alert(`Charging $${commentData.price.toFixed(2)} to the customer credit card.`);
-
-            console.log(commentData);
-            commentForm.reset();
-            imagePreview.innerHTML = ''; // Clear the image previews
-            alert("Comment, images, and price submitted! Report downloaded.");
-            window.location.href = 'returnedpageadmin.html';
-        });
+        // Initialize the event listeners when the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", initializeEventListeners);
     </script>
 </body>
 </html>
