@@ -1,42 +1,42 @@
 //swiper function
 function initializeSwiper() {
     return new Swiper(".swiper", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false
-      },
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2,
-        slideShadows: true
-      },
-      keyboard: {
-        enabled: true
-      },
-      mousewheel: {
-        thresholdDelta: 70
-      },
-      spaceBetween: 60,
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      }
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false
+        },
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true
+        },
+        keyboard: {
+            enabled: true
+        },
+        mousewheel: {
+            thresholdDelta: 70
+        },
+        spaceBetween: 60,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+        }
     });
-  }
-  
-  // Initialize Swiper
-  document.addEventListener('DOMContentLoaded', () => {
-    initializeSwiper();
-  });
+}
 
-  
+// Initialize Swiper
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSwiper();
+});
+
+
 //feedback open up email 
 function sendFeedback(event) {
     event.preventDefault(); // Prevent form from submitting normally
@@ -60,79 +60,70 @@ function sendFeedback(event) {
     document.getElementById('feedbackComment').value = '';
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const authForm = document.getElementById("authForm");
+    const formTitle = document.getElementById("formTitle");
+    const switchToLogin = document.getElementById("switchToLogin");
+    const switchToRegister = document.getElementById("switchToRegister");
 
-const authForm = document.getElementById("authForm");
-const formTitle = document.getElementById("formTitle");
-const switchForm = document.getElementById("switchForm");
-const switchToLogin = document.getElementById("switchToLogin");
-const switchToRegister = document.getElementById("switchToRegister");
-const userArea = document.getElementById("userArea");
-const loggedInUser = document.getElementById("loggedInUser");
-const logoutButton = document.getElementById("logoutButton");
+    let isLogin = false;
 
-let isLogin = false;
+    const updateForm = () => {
+        formTitle.innerText = isLogin ? "Login" : "Register";
+        authForm.querySelector("button").innerText = isLogin ? "Login" : "Register";
+    };
 
-switchToRegister.addEventListener("click", (e) => {
-    e.preventDefault();
-    isLogin = false;
-    formTitle.innerText = "Register";
-    authForm.querySelector("button").innerText = "Register";
-    document.getElementById("switchToLogin").addEventListener("click"
-        , (e) => {
-            e.preventDefault();
-            isLogin = true;
-            formTitle.innerText = "Login";
-            authForm.querySelector("button").innerText = "Login";
-        });
-});
+    // Switch to Register form
+    window.switchToRegisterForm = function (e) {
+        e.preventDefault();
+        isLogin = false;
+        updateForm();
+    };
 
-switchToLogin.addEventListener("click", (e) => {
-    e.preventDefault();
-    isLogin = true;
-    formTitle.innerText = "Login";
-    authForm.querySelector("button").innerText = "Login";
-    document.getElementById("switchToRegister").addEventListener("click"
-        , (e) => {
-            e.preventDefault();
-            isLogin = false;
-            formTitle.innerText = "Register";
-            authForm.querySelector("button").innerText = "Register";
-        });
-});
-authForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    // Switch to Login form
+    window.switchToLoginForm = function (e) {
+        e.preventDefault();
+        isLogin = true;
+        updateForm();
+    };
 
-    if (isLogin) {
-        // Check for admin credentials
-        if (username === "admin" && password === "admin123") {
-            alert("Admin login successful!");
-            window.location.href = 'adminpage.html';
-            return;
+    // Handle form submission
+    window.handleFormSubmit = function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (isLogin) {
+            loginUser(username, password);
+        } else {
+            registerUser(username, password);
         }
+    };
 
-        // Login logic for regular users
+    const loginUser = (username, password) => {
         const storedUser = JSON.parse(localStorage.getItem(username));
         if (storedUser && storedUser.password === password) {
-            alert("Login successful! Hello, "+username+"!");
-            localStorage.setItem("id", username);
+            alert("Login successful! Hello, " + username + "!");
             window.location.href = 'carselection.html';
         } else {
             alert("Invalid username or password.");
         }
-    } else {
-        // Register logic
-        if (localStorage.getItem(username) || username === "admin" && password === "admin123") {
+    };
+
+    const registerUser = (username, password) => {
+        if (localStorage.getItem(username)) {
             alert("Username already exists.");
-            authForm.reset();
         } else {
             localStorage.setItem(username, JSON.stringify({ username, password }));
             alert("Registration successful!");
             authForm.reset();
         }
-    }
+    };
+
+    // Initialize the form on page load
+    updateForm();
 });
+
 // logoutButton.addEventListener("click", () => {
 //     userArea.classList.add("hidden");
 //     authForm.classList.remove("hidden");

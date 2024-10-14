@@ -1,92 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  
+  <title>Azoom Car Rental</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
-  
 </head>
+
 <body>
   <main>
-  <!-- =================start Logo========================= -->
-  <div class="logo-navbar" id="home">
-    <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
-  <!-- =================End Logo========================= -->
-  <!-- =================Start navbar========================= -->
-    <nav class="navbar">
-        <ul class="top-nav-uil">
-          <div class="navbar-middle">
-          <li class="top-nav-li"><a href="index.html">Home</a></li>
-          <li class="top-nav-li"><a href="#"
-            id="switchToLogin">Login</a></li>
-          <li class="top-nav-li" ><a href="#"
-            id="switchToRegister">Registration</a></li>
-        </ul>
-    </nav>
+    <!-- =================start Logo========================= -->
+    <div class="logo-navbar" id="home">
+      <a href="#home">
+        <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      </a>
     </div>
-  <!-- =================end navbar========================= -->
-  <section id="form-login_register">
-    <div class="container">
-      <h1 id="formTitle">Register</h1>
-      <form id="authForm">
-      <input type="text" id="username" placeholder="Username"
-      required>
-      <input type="password" id="password"
-      placeholder="Password" required>
-      <button type="submit">Register</button>
-      </form>
-  </div>
-</section>
-</main>
-<script src="script.js"></script>
+    <!-- =================End Logo========================= -->
+
+    <!-- =================Start navbar========================= -->
+    <nav class="navbar">
+      <ul class="top-nav-uil">
+        <div class="navbar-middle">
+          <li class="top-nav-li"><a href="index.html">Home</a></li>
+          <li class="top-nav-li"><a href="#" onclick="switchToLoginForm(event)">Login</a></li>
+          <li class="top-nav-li"><a href="#" onclick="switchToRegisterForm(event)">Registration</a></li>
+        </div>
+      </ul>
+    </nav>
+    <!-- =================end navbar========================= -->
+
+    <section id="form-login_register">
+      <div class="container">
+        <h1 id="formTitle">Register</h1>
+        <form id="authForm" onsubmit="handleFormSubmit(event)">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-leftside">
+      <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+    </div>
+
+    <div class="footer-middle">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>463 Clementi Rd, Singapore 599494</span></p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p>+65 6248 9777</p>
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+      </div>
+    </div>
+
+    <div class="footer-rightside">
+      <p class="footer-company-about">
+        <span>About the company</span>
+        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus
+        vehicula sit amet.
+      </p>
+      <div class="footer-icons">
+        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 
-<footer>
-
-  <div class="footer-leftside">
-    <img src="image/logo(withoutbackground).png" width="200px" height="200px">
-    <h2 class="footer-company-name">Azoom car rental © 2024</h2>
-  </div>
-
-  <div class="footer-middle">
-
-    <div>
-      <i class="fa fa-map-marker"></i>
-      <p><span>463 Clementi Rd, Singapore 599494</p>
-    </div>
-
-    <div>
-      <i class="fa fa-phone"></i>
-      <p>+65 6248 9777</p>
-    </div>
-
-    <div>
-      <i class="fa fa-envelope"></i>
-      <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
-    </div>
-
-  </div>
-
-  <div class="footer-rightside">
-
-    <p class="footer-company-about">
-      <span>About the company</span>
-      Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-    </p>
-
-    <div class="footer-icons">
-
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-instagram"></i></a>
-
-    </div>
-
-  </div>
-
-</footer>
 </html>
