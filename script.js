@@ -1,10 +1,49 @@
+//swiper function
+function initializeSwiper() {
+    return new Swiper(".swiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false
+      },
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: true
+      },
+      keyboard: {
+        enabled: true
+      },
+      mousewheel: {
+        thresholdDelta: 70
+      },
+      spaceBetween: 60,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      }
+    });
+  }
+  
+  // Initialize Swiper
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeSwiper();
+  });
+
+  
 //feedback open up email 
 function sendFeedback(event) {
     event.preventDefault(); // Prevent form from submitting normally
 
     const firstName = document.getElementById('firstName').value;
     const feedbackComment = document.getElementById('feedbackComment').value;
-    const recipient = 'azoom@gmail.com';
+    const recipient = 'support@azoomrental.com';
 
     // Encode the subject and body for the email
     const subject = 'Feedback from ' + firstName;
