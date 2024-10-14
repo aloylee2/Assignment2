@@ -139,3 +139,10 @@ function sendValue(value) {
     // Redirect to the next page
     window.location.href = 'testformsavetxt.html';
 }
+
+// carselection send value over to form
+function select(carName, carPrice) {
+    localStorage.setItem('selectedCar', carName);
+    localStorage.setItem('selectedPrice', carPrice);
+    window.location.href = 'reserve_page.html';
+  }
