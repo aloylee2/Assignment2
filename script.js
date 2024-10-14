@@ -228,10 +228,54 @@ function handleSubmit(event) {
     }, 0);
 
     const queryString = new URLSearchParams(reservationDetails).toString();
-    window.location.href = `summary_test.html?${queryString}`;
+    window.location.href = `summary_page.html?${queryString}`;
 }
 
 window.onload = () => {
     setMinPickupDate();
     updateDropDateLimits();
 };
+
+//summary pagejs
+// Function to get query parameters from the URL
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    const queryArray = queryString.split("&");
+    queryArray.forEach(param => {
+        const [key, value] = param.split("=");
+        params[decodeURIComponent(key)] = decodeURIComponent(value);
+    });
+    return params;
+}
+
+// Function to display reservation details
+function displayReservationDetails() {
+    const details = getQueryParams();
+    if (!details.fullName) {
+        document.getElementById('summaryDetails').innerHTML = '<p>Error: Reservation details are missing.</p>';
+        return;
+    }
+    const summaryHTML = `
+        <p><strong>Full Name:</strong> ${details.fullName}</p>
+        <p><strong>Email:</strong> ${details.email}</p>
+        <p><strong>Car Model:</strong> ${details.carModel}</p>
+        <p><strong>Car Price:</strong> ${details.carPrice}</p>
+        <p><strong>Pickup Date:</strong> ${details.pickupDate}</p>
+        <p><strong>Pickup Time:</strong> ${details.pickupTime}</p>
+        <p><strong>Drop Date:</strong> ${details.dropDate}</p>
+        <p><strong>Drop Time:</strong> ${details.dropTime}</p>
+        <p><strong>Car Plate Number:</strong> ${details.carPlateNumber}</p>
+    `;
+    document.getElementById('summaryDetails').innerHTML = summaryHTML;
+}
+
+// Function to handle car pick-up action
+function pickUpCar() {
+    const details = getQueryParams();
+    const params = new URLSearchParams(details).toString();
+    window.location.href = `pickup.html?${params}`;
+}
+
+// Call displayReservationDetails on window load
+window.onload = displayReservationDetails;

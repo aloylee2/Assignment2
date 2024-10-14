@@ -549,9 +549,9 @@ h1 {
   text-align: center;
 }
 
-input,
+.reserve_page .container-reservation #reserve_page_reservationForm input,
 select,
-button {
+#reserve_page_button .car-button {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -575,8 +575,40 @@ button:hover {
   font-size: 0.9em;
   margin: 0 0 10px;
 }
-
-      
+/* carselection */
+.car-button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+/* summarypage */
+button{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.banner-summary{
+  background-color: #050505; /* Background color of the banner */
+  padding: 15px; /* Padding around the text */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Space between logo and banner */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+.banner-summary-texts{
+  color: white;
+}
+.container-summary {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: auto;
+}
 
 /* this is for media screen*/
 @media screen and (max-width: 800px) {
