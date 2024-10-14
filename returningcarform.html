@@ -8,57 +8,78 @@
 </head>
 <body>
     <main>
-        <h1>User and Car Rental Form</h1>
+        <!-- =================start Logo========================= -->
+        <div class="logo-navbar" id="home">
+            <img src="image/logo(withoutbackground).png" alt="Azoom Car Rental Logo" width="200" height="200">
+        </div>
+        <!-- =================End Logo========================= -->
+        
+        <div class="banner-summary">
+            <h2 class="banner-summary-texts">Welcome to Azoom Car Rental!</h2>
+        </div>
+
+        <h1>Car return form</h1>
         <form id="userForm">
+            <label for="fullName">Full Name:</label>
             <input type="text" id="fullName" placeholder="Your Full Name" required>
+
+            <label for="carPlate">Car Plate Number:</label>
             <input type="text" id="carPlate" placeholder="Car Plate Number" required>
+
+            <label for="carLocation">Location of Car:</label>
             <input type="text" id="carLocation" placeholder="Location of Car" required>
-            <input type="file" id="pickupCar" accept=".txt" required> <!-- Accepts only .txt files -->
-            <input type="file" id="returnCar" accept=".txt" required> <!-- Accepts only .txt files -->
-            <button type="button" onclick="submitUserInfo()">Submit User Info</button>
+
+            <label for="pickupCar">Pickup Details:</label>
+            <small>Upload pickup details (Text file)</small>
+            <input type="file" id="pickupCar" accept=".txt" required>
+            
+
+            <label for="returnCar">Return Details:</label>
+            <small>Upload return details (Text file)</small>
+            <input type="file" id="returnCar" accept=".txt" required>
+            
+
+            <button type="submit" onclick="submitUserInfo()">Submit User Info</button>
         </form>
     </main>
-    <script>
-        function submitUserInfo() {
-            const fullName = document.getElementById("fullName").value;
-            const carPlate = document.getElementById("carPlate").value;
-            const carLocation = document.getElementById("carLocation").value;
 
-            // Get files and check if they are text files
-            const pickupCarFile = document.getElementById("pickupCar").files[0];
-            const returnCarFile = document.getElementById("returnCar").files[0];
+    <footer>
+        <div class="footer-leftside">
+            <img src="image/logo(withoutbackground).png" alt="Azoom Car Rental Logo" width="200" height="200">
+            <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+        </div>
 
-            if (pickupCarFile && pickupCarFile.type !== "text/plain") {
-                alert("Please upload a valid text file for Pickup Car.");
-                return;
-            }
-            if (returnCarFile && returnCarFile.type !== "text/plain") {
-                alert("Please upload a valid text file for Return Car.");
-                return;
-            }
+        <div class="footer-middle">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>463 Clementi Rd, Singapore 599494</span></p>
+            </div>
 
-            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+65 6248 9777</p>
+            </div>
 
-            const newUser = {
-                fullName: fullName,
-                carPlate: carPlate,
-                carLocation: carLocation,
-                pickupCar: pickupCarFile ? pickupCarFile.name : null, // Store the file name if selected
-                returnCar: returnCarFile ? returnCarFile.name : null, // Store the file name if selected
-                date: new Date().toLocaleString()
-            };
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+            </div>
+        </div>
 
-            existingUsers.push(newUser);
+        <div class="footer-rightside">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
 
-            try {
-                localStorage.setItem("users", JSON.stringify(existingUsers));
-                document.getElementById("userForm").reset(); // Clear the form
-                alert('User information submitted successfully!'); // Feedback message
-                window.location.href = 'test_send.html';
-            } catch (error) {
-                alert('There was an error saving your information. Please try again.'); // Error handling
-            }
-        }
-    </script>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
