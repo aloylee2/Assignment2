@@ -4,195 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Azoom Car Rental</title>
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
   <main>
-    <header>
-      <div class="logo-navbar" id="home">
-        <img src="image/logo(withoutbackground).png" alt="Azoom Car Rental Logo" width="200" height="200">
-        <nav class="navbar">
-          <ul class="top-nav-uil">
-            <div class="navbar-middle">
-              <li class="top-nav-li"><a href="#home">Home</a></li>
-              <li class="top-nav-li"><a href="#" id="switchToLogin">Login</a></li>
-              <li class="top-nav-li"><a href="#about">About</a></li>
-            </div>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- =================start Logo========================= -->
+    <div class="logo-navbar" id="home">
+      <a href="#home">
+        <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      </a>
+    </div>
+    <!-- =================End Logo========================= -->
     
-    <h2>Welcome,
-      <form> 
-        <label for="usernameInput">Username:</label>
-        <input type="text" id="usernameInput" readonly>
-      </form>
-    </h2>
+    <!-- =================Start navbar========================= -->
+    <nav class="navbar">
+      <ul class="top-nav-uil">
+        <li class="top-nav-li"><a href="#home">Home</a></li>
+        <li class="top-nav-li"><a href="#car">View Cars</a></li>
+        <li class="top-nav-li"><a href="carselection.html">View car</a></li>
+        <li class="top-nav-li"><a href="display_report.html">View car report</a></li>
+      </ul>
+    </nav>
+    <!-- =================end navbar========================= -->
     
     <section>
-      <div class="car-container-cards" id="car">
-        <h1 class="car-cards-h1">Car Available</h1>
-        <div class="car-cards">
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/logo.png" alt="Tribecar" class="car-responsive" width="230" height="230">
-              <h1 class="car-cards-h1-text">Tribecar</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Compact Car</h2>
-              <h2 class="car-price">$30,000</h2>
-              <button class="car-button" onclick="select('Tribecar', '$30,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          <div class="car-card">
-            <div class="car-card-image">
-              <img src="image/bmw.jpg" alt="BMW" class="car-responsive" width="300" height="300">
-              <h1 class="car-cards-h1-text">BMW</h1>
-            </div>
-            <div class="card-info">
-              <h2 class="car-name">Luxury Car</h2>
-              <h2 class="car-price">$50,000</h2>
-              <button class="car-button" onclick="select('BMW', '$50,000')">Select</button>
-            </div>
-          </div>
-          
-          
-          <!-- Add more car cards as needed -->
-        </div>
-      </div>
+      
+     
+      
+     
+      
     </section>
   </main>
-
-  <script src="script.js"></script>
-  <script>
-    function select(carName, carPrice) {
-      localStorage.setItem('selectedCar', carName);
-      localStorage.setItem('selectedPrice', carPrice);
-      window.location.href = 'testformsavetxt.html';
-    }
-
-    document.getElementById("usernameInput").value = localStorage.getItem("id") || 'No user logged in';
-  </script>
-
+  
   <footer>
     <div class="footer-leftside">
-      <img src="image/logo(withoutbackground).png" width="200px" height="200px" alt="Footer Logo">
-      <h2 class="footer-company-name">Azoom Car Rental © 2024</h2>
+      <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      <h2 class="footer-company-name">Azoom car rental © 2024</h2>
     </div>
+    
     <div class="footer-middle">
       <div>
         <i class="fa fa-map-marker"></i>
@@ -207,17 +60,20 @@
         <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
       </div>
     </div>
+    
     <div class="footer-rightside">
       <p class="footer-company-about">
         <span>About the company</span>
         Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
       </p>
       <div class="footer-icons">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
       </div>
     </div>
   </footer>
+  <script src="js.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

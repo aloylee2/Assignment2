@@ -60,7 +60,7 @@ function sendFeedback(event) {
     document.getElementById('feedbackComment').value = '';
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', function() {
     const authForm = document.getElementById("authForm");
     const formTitle = document.getElementById("formTitle");
     const switchToLogin = document.getElementById("switchToLogin");
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const storedUser = JSON.parse(localStorage.getItem(username));
         if (storedUser && storedUser.password === password) {
             alert("Login successful! Hello, " + username + "!");
-            window.location.href = 'carselection.html';
+            window.location.href = 'welcome_user.html';
         } else {
             alert("Invalid username or password.");
         }

@@ -3,99 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Azoom Car Rental</title>
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   
-  
 </head>
 <body>
-  
   <main>
-  <!-- =================start Logo========================= -->
-  <div class="logo-navbar" id="home">
-    <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
-  <!-- =================End Logo========================= -->
-  <!-- =================Start navbar========================= -->
+    <!-- =================start Logo========================= -->
+    <div class="logo-navbar" id="home">
+      <a href="#home">
+        <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      </a>
+    </div>
+    <!-- =================End Logo========================= -->
+    
+    <!-- =================Start navbar========================= -->
     <nav class="navbar">
-        <ul class="top-nav-uil">
-          <div class="navbar-middle">
-          <li class="top-nav-li"><a href="#home">Home</a></li>
-          <li class="top-nav-li"><a href="carselection.html">View car</a></li>
-          <li class="top-nav-li"><a href="display_report.html">View car report</a></li>
-          <li class="top-nav-li"><a href="#">Payment</a></li>
-        </ul>
-    </nav>
-    </div>
-  <!-- =================end navbar========================= -->
-  <h2>Welcome,
-  <form> 
-    <label for="usernameInput">Username:</label>
-    <input type="text" id="usernameInput" readonly>
-</form>
-</h2>
-  
-  
-  
-<div>
-
-</div>
-<!-- <button id="logoutButton">Logout</button> -->
-</main>
-<script src="script.js">
-
-</script>
-<script>
-   document.getElementById("usernameInput").value = localStorage.getItem("id") || 'No user logged in';
-  
-</script>
+      <ul class="top-nav-uil">
+        <div class="navbar-middle">
+        <li class="top-nav-li"><a href="#home">Home</a></li>
+        <li class="top-nav-li"><a href="carselection.html">View car</a></li>
+        <li class="top-nav-li"><a href="display_report.html">View car report</a></li>
+        <li class="top-nav-li"><a href="#">Payment</a></li>
+      </ul>
+  </nav>
+  </div>
+    <!-- =================end navbar========================= -->
+    <h2>Welcome back, <b>username: </b><span id="usernameInput" readonly></span>!</h2>
+    
+    <section>
+      <!--==================start of banner====================-->
+      <div class="banner">
+        <div class="banner-text">
+          <h1 class="banner-h1">Welcome to AZOOM CAR RENTAL</h1>
+          <br>
+          <p class="banner-p">Choose from our selection of top-quality vehicles for your journey.</p>
+          <br>
+          <a href="login_register.html">
+            <button class="banner-button">Book Now</button>
+          </a>
+        </div>
+      </div>
+      <!--==================End of banner====================-->
+      
+      <!-- =================Start of slider========================= -->
+      <div class="swiper-container" id="car">
+        <div class="swiper">
+          <h1 class="swiper-h1">List of electric cars</h1>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide swiper-slide--one"><span>Domestic</span></div>
+            <div class="swiper-slide swiper-slide--two"><span>Subtropical</span></div>
+            <div class="swiper-slide swiper-slide--three"><span>History</span></div>
+            <div class="swiper-slide swiper-slide--four"><span>Mayans</span></div>
+            <div class="swiper-slide swiper-slide--five"><span>Native</span></div>
+          </div>
+        </div>
+        <br>
+      </div>
+      
+      <!-- =================Start of grid========================= -->
+      <div class="container-cards" id="about">
+        <h1 class="cards-h1">Why AzoomCar?</h1>
+        <div class="cards">
+          <div class="card">
+            <div class="card-image">
+              <img src="image/location.png" class="responsive" width="230" height="230" alt="Location">
+              <h1>Text1</h1>
+            </div>
+            <div class="card-info"><h2>Info 1</h2></div>
+          </div>
+          <div class="card">
+            <div class="card-image">
+              <img src="image/savetime.png" class="responsive" width="230" height="230" alt="Save Time">
+              <h1>Text1</h1>
+            </div>
+            <div class="card-info"><h2>Info 2</h2></div>
+          </div>
+          <div class="card">
+            <div class="card-image">
+              <img src="image/savetime.png" class="responsive" width="230" height="230" alt="Save Time">
+              <h1>Text1</h1>
+            </div>
+            <div class="card-info"><h2>Info 3</h2></div>
+          </div>
+          <div class="card">
+            <div class="card-image">
+              <img src="image/savemoney.png" class="responsive" width="230" height="230" alt="Save Money">
+              <h1>Text1</h1>
+            </div>
+            <div class="card-info"><h2>Info 4</h2></div>
+          </div>
+        </div>
+      </div>
+      <!-- =================End of grid========================= -->
+      
+      <!-- =================Start of feedback========================= -->
+      <div class="feedback-form" id="feedback">
+        <h1 class="feedback-h1">Feedback Form</h1>
+        <div class="container">
+          <form id="feedbackForm" onsubmit="sendFeedback(event)">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Your First Name" required>
+            <label for="feedbackComment">Feedback</label>
+            <textarea id="feedbackComment" placeholder="Your Feedback" rows="4" required></textarea>
+            <button type="submit" id="submitButton">Send Feedback</button>
+          </form>
+        </div>
+      </div>
+      <!-- =================End of feedback========================= -->
+    </section>
+  </main>
 </body>
-
-<footer>
-
-  <div class="footer-leftside">
-    <img src="image/logo(withoutbackground).png" width="200px" height="200px">
-    <h2 class="footer-company-name">Azoom car rental © 2024</h2>
-  </div>
-
-  <div class="footer-middle">
-
-    <div>
-      <i class="fa fa-map-marker"></i>
-      <p><span>463 Clementi Rd, Singapore 599494</p>
-    </div>
-
-    <div>
-      <i class="fa fa-phone"></i>
-      <p>+65 6248 9777</p>
-    </div>
-
-    <div>
-      <i class="fa fa-envelope"></i>
-      <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
-    </div>
-
-  </div>
-
-  <div class="footer-rightside">
-
-    <p class="footer-company-about">
-      <span>About the company</span>
-      Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-    </p>
-
-    <div class="footer-icons">
-
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-instagram"></i></a>
-
-    </div>
-
-  </div>
   
-
-</footer>
+  <footer>
+    <div class="footer-leftside">
+      <img src="image/logo(withoutbackground).png" width="200" height="200" alt="Azoom Car Rental Logo">
+      <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+    </div>
+    
+    <div class="footer-middle">
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <p><span>463 Clementi Rd, Singapore 599494</span></p>
+      </div>
+      <div>
+        <i class="fa fa-phone"></i>
+        <p>+65 6248 9777</p>
+      </div>
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+      </div>
+    </div>
+    
+    <div class="footer-rightside">
+      <p class="footer-company-about">
+        <span>About the company</span>
+        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+      </p>
+      <div class="footer-icons">
+        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script src="js.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("usernameInput").textContent = localStorage.getItem("id") || 'No user logged in';
+  </script>
+</body>
 </html>
