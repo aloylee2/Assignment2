@@ -782,6 +782,11 @@ button{
   margin-right: 10px;
   margin-bottom: 10px;
 }
+.welcome_user{
+  text-align: center;
+  font-size: 26px;
+
+}
 
 /* this is for media screen*/
 @media screen and (max-width: 800px) {

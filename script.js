@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check for regular user credentials
             if (storedUser && storedUser.password === password) {
                 alert(`Login successful! Hello, ${username}!`);
+                localStorage.setItem("id", username);
                 window.location.href = 'welcome_user.html';
             } else {
                 alert("Invalid username or password.");
