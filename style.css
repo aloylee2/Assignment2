@@ -354,29 +354,6 @@ footer .footer-icons a{
 	margin-bottom: 5px;
 }
 
-/* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 880px) {
-
-	.footer{
-		font: bold 14px sans-serif;
-	}
-
-	footer .footer-leftside,
-	footer .footer-middle,
-	footer .footer-rightside{
-		display: block;
-		width: 100%;
-		margin-bottom: 40px;
-		text-align: center;
-	}
-
-	footer .footer-middle i{
-		margin-left: 0;
-	}
-
-}
-
 /* login and register page */
 #form-login_register {
   background-color: #ffffff; /* White for contrast */
@@ -682,11 +659,6 @@ button{
   background-color: #dc3545;
   color: white;
 }
-@media (max-width: 768px) {
-  .image-grid {
-      grid-template-columns: 1fr; /* Stack images in one column */
-  }
-}
 
 /* return car.css */
 .car-return-container{
@@ -763,11 +735,6 @@ button{
   background-color: #dc3545;
   color: white;
 }
-@media (max-width: 768px) {
-  .car-return-image-grid {
-      grid-template-columns: 1fr; /* Stack images in one column */
-  }
-}
 
 /* commentpage (admin) */
  /* Container for image previews */
@@ -800,4 +767,40 @@ button{
     display: block;
     font-size: 23px;
   }
+  .banner{
+    padding: 10px;
+    background: linear-gradient(to top,lightslategray,darkgray);
+    height: 260px;
+    }
+}
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer{
+		font: bold 14px sans-serif;
+	}
+
+	footer .footer-leftside,
+	footer .footer-middle,
+	footer .footer-rightside{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	footer .footer-middle i{
+		margin-left: 0;
+	}
+
+}
+
+@media (max-width: 768px) {
+  .car-return-image-grid {
+      grid-template-columns: 1fr; /* Stack images in one column */
+  }
+  .image-grid {
+    grid-template-columns: 1fr; /* Stack images in one column */
+}
 }
