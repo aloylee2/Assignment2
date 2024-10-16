@@ -5,107 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pick Up Car</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 
     <main>
         <!-- =================start Logo========================= -->
         <div class="logo-navbar" id="home">
-          <img src="image/logo(withoutbackground).png" href="#myPage"width="200" height="200">
+            <img src="image/logo(withoutbackground).png" href="#myPage" width="200" height="200">
         <!-- =================End Logo========================= -->
         <div class="banner-summary">
             <h2 class="banner-summary-texts">Welcome to Azoom Car Rental!</h2>
         </div>
 
-    <!-- Summary Container -->
-    <div class="container">
-        <h1>Pick Up Car</h1>
-        <div id="pickupDetails"></div>
-    </div>
-    <br>
-    
-    <!-- Damage Report Container -->
-    <div class="container">
-        <h2>Report Damages</h2>
-        <div class="upload-info">Please upload images for Front, Back, Left, and Right.</div>
-
-        <div class="image-grid">
-            <div class="image-grid-card">
-                <label for="frontImage">Front:</label>
-                <input type="file" id="frontImage" accept="image/*" onchange="previewImage('frontImage', 'frontPreview')">
-                <div class="image-card" id="frontPreview"></div>
-            </div>
-            <div class="image-grid-card">
-                <label for="backImage">Back:</label>
-                <input type="file" id="backImage" accept="image/*" onchange="previewImage('backImage', 'backPreview')">
-                <div class="image-card" id="backPreview"></div>
-            </div>
-            <div class="image-grid-card">
-                <label for="leftImage">Left:</label>
-                <input type="file" id="leftImage" accept="image/*" onchange="previewImage('leftImage', 'leftPreview')">
-                <div class="image-card" id="leftPreview"></div>
-            </div>
-            <div class="image-grid-card">
-                <label for="rightImage">Right:</label>
-                <input type="file" id="rightImage" accept="image/*" onchange="previewImage('rightImage', 'rightPreview')">
-                <div class="image-card" id="rightPreview"></div>
-            </div>
+        <!-- Summary Container -->
+        <div class="container">
+            <h1>Pick Up Car</h1>
+            <div id="pickupDetails"></div>
         </div>
-        <textarea class="damage-textarea" id="damageReport" placeholder="Describe damages to the car..."></textarea>
+        <br>
+        
+        <!-- Damage Report Container -->
+        <div class="container">
+            <h2>Report Damages</h2>
+            <div class="upload-info">Please upload images for Front, Back, Left, and Right.</div>
 
-        <button class="submit-button" onclick="submitReport()">Submit Report</button>
-    </div>
+            <div class="image-grid">
+                <div class="image-grid-card">
+                    <label for="frontImage">Front:</label>
+                    <input type="file" id="frontImage" accept="image/*" onchange="pickupPreviewImage('frontImage', 'frontPreview')">
+                    <div class="image-card" id="frontPreview"></div>
+                </div>
+                <div class="image-grid-card">
+                    <label for="backImage">Back:</label>
+                    <input type="file" id="backImage" accept="image/*" onchange="pickupPreviewImage('backImage', 'backPreview')">
+                    <div class="image-card" id="backPreview"></div>
+                </div>
+                <div class="image-grid-card">
+                    <label for="leftImage">Left:</label>
+                    <input type="file" id="leftImage" accept="image/*" onchange="pickupPreviewImage('leftImage', 'leftPreview')">
+                    <div class="image-card" id="leftPreview"></div>
+                </div>
+                <div class="image-grid-card">
+                    <label for="rightImage">Right:</label>
+                    <input type="file" id="rightImage" accept="image/*" onchange="pickupPreviewImage('rightImage', 'rightPreview')">
+                    <div class="image-card" id="rightPreview"></div>
+                </div>
+            </div>
+            <textarea class="damage-textarea" id="damageReport" placeholder="Describe damages to the car..."></textarea>
 
-    <!-- Footer -->
-    <footer>
+            <button type="submit" class="submit-button" onclick="pickupSubmitReport()">Submit Report</button>
+        </div>
 
-        <div class="footer-leftside">
-          <img src="image/logo(withoutbackground).png" width="200px" height="200px">
-          <h2 class="footer-company-name">Azoom car rental © 2024</h2>
-        </div>
-      
-        <div class="footer-middle">
-      
-          <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span>463 Clementi Rd, Singapore 599494</p>
-          </div>
-      
-          <div>
-            <i class="fa fa-phone"></i>
-            <p>+65 6248 9777</p>
-          </div>
-      
-          <div>
-            <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
-          </div>
-      
-        </div>
-      
-        <div class="footer-rightside">
-      
-          <p class="footer-company-about">
-            <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-          </p>
-      
-          <div class="footer-icons">
-      
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-      
-          </div>
-      
-        </div>
-      
-      </footer>
-      <script src="script.js"></script>
-    ,<script>
-        window.onload = displayPickupDetails;
+        <!-- Footer -->
+        <footer>
+            <div class="footer-leftside">
+                <img src="image/logo(withoutbackground).png" width="200px" height="200px">
+                <h2 class="footer-company-name">Azoom car rental © 2024</h2>
+            </div>
+            <div class="footer-middle">
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>463 Clementi Rd, Singapore 599494</span></p>
+                </div>
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+65 6248 9777</p>
+                </div>
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@company.com">support@Azoomcarrental.com</a></p>
+                </div>
+            </div>
+            <div class="footer-rightside">
+                <p class="footer-company-about">
+                    <span>About the company</span>
+                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                </p>
+                <div class="footer-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Initialize function on window load
+        window.onload = pickupDisplayPickupDetails;
     </script>
 
 </body>

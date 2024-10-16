@@ -60,7 +60,7 @@ function sendFeedback(event) {
     document.getElementById('feedbackComment').value = '';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const authForm = document.getElementById("authForm");
     const formTitle = document.getElementById("formTitle");
     const switchToLogin = document.getElementById("switchToLogin");
@@ -108,9 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'welcomeadminpage.html';
                 return; // Exit after redirecting
             }
-    
+
             const storedUser = JSON.parse(localStorage.getItem(username));
-            
+
             // Check for regular user credentials
             if (storedUser && storedUser.password === password) {
                 alert(`Login successful! Hello, ${username}!`);
@@ -165,11 +165,11 @@ function select(carName, carPrice) {
     localStorage.setItem('selectedCar', carName);
     localStorage.setItem('selectedPrice', carPrice);
     window.location.href = 'reserve_page.html';
-  }
+}
 
 //js for page reserve_page.html
 
-  function setMinPickupDate() {
+function setMinPickupDate() {
     const today = new Date();
     const formattedToday = today.toISOString().split('T')[0];
     document.getElementById('reserve_page_pickupDate').setAttribute('min', formattedToday);
@@ -200,7 +200,7 @@ function generateCarPlateNumber() {
     return plateNumber;
 }
 
-function handleSubmit(event) {
+function handleSubmitReserve(event) {
     event.preventDefault();
     const errorMessageElement = document.getElementById('reserve_page_errorMessage');
     errorMessageElement.innerText = ""; // Clear previous error messages
@@ -297,9 +297,10 @@ function pickUpCar() {
     window.location.href = `pickup.html?${params}`;
 }
 
-//pickup.css
-// Function to get query parameters from the URL
-function getQueryParams() {
+//pickup.js
+
+ // Function to get query parameters from the URL
+ function pickupGetQueryParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
     const queryArray = queryString.split("&");
@@ -311,13 +312,13 @@ function getQueryParams() {
 }
 
 // Function to display reservation details on pickup page
-function displayPickupDetails() {
-    const details = getQueryParams();
+function pickupDisplayPickupDetails() {
+    const details = pickupGetQueryParams();
     if (!details.fullName || !details.email) {
         document.getElementById('pickupDetails').innerHTML = '<p>Error: Missing reservation details.</p>';
         return;
     }
-    
+
     const pickupHTML = `
         <p><strong>Full Name:</strong> ${details.fullName || 'N/A'}</p>
         <p><strong>Email:</strong> ${details.email || 'N/A'}</p>
@@ -332,8 +333,37 @@ function displayPickupDetails() {
     document.getElementById('pickupDetails').innerHTML = pickupHTML;
 }
 
+// Function to download the report as a text file
+function pickupDownloadReport(content) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pre_pickup_report.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 0);
+
+    pickupShowNotification("Report submitted successfully!", 'success');
+    window.location.href = 'welcome_user.html';
+}
+
+// Function to display notifications
+function pickupShowNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.className = `notification ${type}`;
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
 // Function to preview uploaded images
-function previewImage(inputId, previewId) {
+function pickupPreviewImage(inputId, previewId) {
     const input = document.getElementById(inputId);
     const preview = document.getElementById(previewId);
     preview.innerHTML = ''; // Clear previous images
@@ -347,7 +377,7 @@ function previewImage(inputId, previewId) {
         }
 
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const imgCard = document.createElement('div');
             imgCard.classList.add('image-card');
             imgCard.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
@@ -358,22 +388,22 @@ function previewImage(inputId, previewId) {
 }
 
 // Function to handle the submission of the report
-function submitReport() {
-const damageReport = document.getElementById('damageReport').value.trim();
-if (!damageReport) {
-showNotification('Please describe if there is a damages or not before submitting.', 'error');
-return;
-}
+function pickupSubmitReport() {
+    const damageReport = document.getElementById('damageReport').value.trim();
+    if (!damageReport) {
+        pickupShowNotification('Please describe if there are damages or not before submitting.', 'error');
+        return;
+    }
 
-const images = {
-front: document.getElementById('frontImage').files[0],
-back: document.getElementById('backImage').files[0],
-left: document.getElementById('leftImage').files[0],
-right: document.getElementById('rightImage').files[0]
-};
+    const images = {
+        front: document.getElementById('frontImage').files[0],
+        back: document.getElementById('backImage').files[0],
+        left: document.getElementById('leftImage').files[0],
+        right: document.getElementById('rightImage').files[0]
+    };
 
-const details = getQueryParams();
-let reportContent = `Pickup Details:\n
+    const details = pickupGetQueryParams();
+    let reportContent = `Pickup Details:\n
 Full Name: ${details.fullName || 'N/A'}
 Email: ${details.email || 'N/A'}
 Car Model: ${details.carModel || 'N/A'}
@@ -390,65 +420,34 @@ ${damageReport}\n
 Images:\n
 `;
 
-const imageKeys = Object.keys(images);
-let imagesProcessed = 0;
+    const imageKeys = Object.keys(images);
+    let imagesProcessed = 0;
 
-imageKeys.forEach((key, index) => {
-const file = images[key];
-if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        // Add base64 string to the report
-        reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
-        imagesProcessed++;
+    imageKeys.forEach((key) => {
+        const file = images[key];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                // Add base64 string to the report
+                reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
+                imagesProcessed++;
 
-        // Check if all images have been processed
-        if (imagesProcessed === imageKeys.length) {
-            downloadReport(reportContent);
+                // Check if all images have been processed
+                if (imagesProcessed === imageKeys.length) {
+                    pickupDownloadReport(reportContent);
+                }
+            };
+            reader.readAsDataURL(file);
+        } else {
+            reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: No image uploaded\n`;
+            imagesProcessed++;
         }
-    };
-    reader.readAsDataURL(file);
-} else {
-    reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: No image uploaded\n`;
-    imagesProcessed++;
-}
-});
+    });
 
-// Download if no images are uploaded
-if (imagesProcessed === imageKeys.length) {
-downloadReport(reportContent);
-}
-}
-
-
-// Function to download the report as a text file
-function downloadReport(content) {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'pre_pickup_report.txt';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }, 0);
-
-    showNotification("Report submitted successfully!", 'success');
-    window.location.href = 'welcome_user.html';
-
-}
-
-// Function to display notifications
-function showNotification(message, type) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.className = `notification ${type}`;
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
+    // Download if no images are uploaded
+    if (imagesProcessed === imageKeys.length) {
+        pickupDownloadReport(reportContent);
+    }
 }
 
 
@@ -472,7 +471,7 @@ function carReturnDisplayPickupDetails() {
         document.getElementById('pickupDetails').innerHTML = '<p>Error: Missing reservation details.</p>';
         return;
     }
-    
+
     const carReturnPickupHTML = `
         <p><strong>Full Name:</strong> ${carReturnDetails.fullName || 'N/A'}</p>
         <p><strong>Email:</strong> ${carReturnDetails.email || 'N/A'}</p>
@@ -501,7 +500,7 @@ function carReturnPreviewImage(inputId, previewId) {
         }
 
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const imgCard = document.createElement('div');
             imgCard.classList.add('car-return-image-card');
             imgCard.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
@@ -564,7 +563,7 @@ function carReturnDownloadReport(content) {
     const carReturnDetails = carReturnGetQueryParams(); // Ensure this retrieves data
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
-    
+
     const a = document.createElement('a');
     a.href = url;
     a.download = `car_return_report.txt`; // Fallback filename
@@ -634,66 +633,66 @@ function submitUserInfo() {
 
 //comment.js(admin)
 const commentForm = document.getElementById("commentForm");
-        const additionalComment = document.getElementById("additionalComment");
-        const priceInput = document.getElementById("price");
-        const imageUpload = document.getElementById("imageUpload");
-        const imagePreview = document.getElementById("imagePreview");
-        
-        const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
+const additionalComment = document.getElementById("additionalComment");
+const priceInput = document.getElementById("price");
+const imageUpload = document.getElementById("imageUpload");
+const imagePreview = document.getElementById("imagePreview");
 
-        // Function to initialize event listeners
-        function initializeEventListeners() {
-            imageUpload.addEventListener("change", handleImageUpload);
-            commentForm.addEventListener("submit", handleSubmit);
-        }
+const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
 
-        // Function to handle image uploads
-        function handleImageUpload() {
-            imagePreview.innerHTML = ''; // Clear previous previews
-            const files = imageUpload.files;
+// Function to initialize event listeners
+function initializeEventListeners() {
+    imageUpload.addEventListener("change", handleImageUpload);
+    commentForm.addEventListener("submit", handleSubmit);
+}
 
-            for (let i = 0; i < files.length; i++) {
-                const img = document.createElement("img");
-                img.src = URL.createObjectURL(files[i]);
-                img.alt = "Image preview";
-                imagePreview.appendChild(img);
-            }
-        }
+// Function to handle image uploads
+function handleImageUpload() {
+    imagePreview.innerHTML = ''; // Clear previous previews
+    const files = imageUpload.files;
 
-        // Function to handle form submission
-        function handleSubmit(e) {
-            e.preventDefault();
+    for (let i = 0; i < files.length; i++) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(files[i]);
+        img.alt = "Image preview";
+        imagePreview.appendChild(img);
+    }
+}
 
-            const commentData = gatherCommentData();
-            downloadReport(commentData);
-            alert(`Charging $${commentData.price.toFixed(2)} to the customer credit card.`);
-            
-            console.log(commentData);
-            resetForm();
-            alert("Comment, images, and price submitted! Report downloaded.");
-            window.location.href = 'returnedpageadmin.html';
-        }
+// Function to handle form submission
+function handleSubmit(e) {
+    e.preventDefault();
 
-        // Function to gather comment data
-        function gatherCommentData() {
-            const commentData = {
-                username: selectedUser.username,
-                originalComment: selectedUser.comment,
-                additionalComment: additionalComment.value,
-                price: parseFloat(priceInput.value),
-                images: []
-            };
+    const commentData = gatherCommentData();
+    downloadReport(commentData);
+    alert(`Charging $${commentData.price.toFixed(2)} to the customer credit card.`);
 
-            const files = imageUpload.files;
-            for (let i = 0; i < files.length; i++) {
-                commentData.images.push(URL.createObjectURL(files[i]));
-            }
-            return commentData;
-        }
+    console.log(commentData);
+    resetForm();
+    alert("Comment, images, and price submitted! Report downloaded.");
+    window.location.href = 'returnedpageadmin.html';
+}
 
-        // Function to download the report
-        function downloadReport(commentData) {
-            const reportContent = `
+// Function to gather comment data
+function gatherCommentData() {
+    const commentData = {
+        username: selectedUser.username,
+        originalComment: selectedUser.comment,
+        additionalComment: additionalComment.value,
+        price: parseFloat(priceInput.value),
+        images: []
+    };
+
+    const files = imageUpload.files;
+    for (let i = 0; i < files.length; i++) {
+        commentData.images.push(URL.createObjectURL(files[i]));
+    }
+    return commentData;
+}
+
+// Function to download the report
+function downloadReport(commentData) {
+    const reportContent = `
                 Check for Damages to the Car Report
                 ------------------------------------
                 Username: ${commentData.username}
@@ -703,19 +702,19 @@ const commentForm = document.getElementById("commentForm");
                 Images: ${commentData.images.join(', ')}
             `.trim();
 
-            const blob = new Blob([reportContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'check_for_damages_report.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url); // Clean up
-        }
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'check_for_damages_report.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Clean up
+}
 
-        // Function to reset the form
-        function resetForm() {
-            commentForm.reset();
-            imagePreview.innerHTML = ''; // Clear the image previews
-        }
+// Function to reset the form
+function resetForm() {
+    commentForm.reset();
+    imagePreview.innerHTML = ''; // Clear the image previews
+}
