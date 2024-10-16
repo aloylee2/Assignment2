@@ -142,7 +142,7 @@ li a:hover:not(.active) {
     }
     
     .swiper-slide--three span {
-    background: #b45205;
+    background: #817368;
     }
     
     .swiper-slide--four span {
@@ -150,7 +150,7 @@ li a:hover:not(.active) {
     }
     
     .swiper-slide--five span {
-    background: #176bbe;
+    background: #6c7f91;
     }
     
     .swiper-slide h2 {
@@ -164,18 +164,33 @@ li a:hover:not(.active) {
     }
     
     .swiper-slide--one{
-    background-image:url("");
+    background-image:url("image/bluecar.jpg");
     background-repeat: no-repeat;
-    background-position: 50% 50%;
     background-size: cover;
     }
     
     .swiper-slide--two{
-    background-image:url("image/bmw.jpg");
+    background-image:url("image/subaru.jpg");
     background-repeat: no-repeat;
-    background-position: 50% 50%;
     background-size: cover;
     }
+    .swiper-slide--three{
+      background-image:url("image/volk.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      }
+      .swiper-slide--four{
+        background-image:url("image/byd.avif");
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        }
+        .swiper-slide--five{
+          background-image:url("image/greencar.webp");
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+          background-size: cover;
+          }
     
     .dots{
       text-align: center;
@@ -754,6 +769,9 @@ button{
   font-size: 26px;
 
 }
+#reportFile{
+  margin: 10px 0px;
+}
 
 /* this is for media screen*/
 @media screen and (max-width: 800px) {
@@ -805,5 +823,8 @@ button{
   }
   .image-grid {
     grid-template-columns: 1fr; /* Stack images in one column */
+}
+#reportFile{
+  margin: 10px 0px;
 }
 }
