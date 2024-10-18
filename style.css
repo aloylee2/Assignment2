@@ -34,7 +34,7 @@ li a {
   text-decoration: none;
 }
 li a:hover:not(.active) {
-  background-color: #111;
+  background-color: #585555;
 }
 
 /* this is for banner */
