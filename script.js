@@ -22,7 +22,7 @@ function initializeSwiper() {
         mousewheel: {
             thresholdDelta: 70
         },
-        spaceBetween: 60,
+        spaceBetween: 55,
         loop: true,
         pagination: {
             el: ".swiper-pagination",
