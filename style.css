@@ -774,17 +774,11 @@ button{
 }
 
 /* this is for media screen*/
-@media screen and (max-width: 800px) {
-  .top-nav-li{
-    display: block;
-    font-size: 23px;
-  }
-}
 @media screen and (max-width: 500px) {
-  .top-nav-li{
+  /* .top-nav-li{
     display: block;
     font-size: 23px;
-  }
+  } */
   .banner{
     padding: 10px;
     background: linear-gradient(to top,lightslategray,darkgray);
@@ -795,6 +789,12 @@ button{
     }
 }
 /* If you don't want the footer to be responsive, remove these media queries */
+@media screen and (max-width: 800px) {
+  .top-nav-li{
+    display: block;
+    font-size: 23px;
+  }
+}
 
 @media (max-width: 880px) {
 
