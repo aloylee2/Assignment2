@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const storedUser = JSON.parse(localStorage.getItem(username));
 
-            // Check for regular user credentials
+            // Check for user credentials
             if (storedUser && storedUser.password === password) {
                 alert(`Login successful! Hello, ${username}!`);
                 localStorage.setItem("id", username);
