@@ -598,11 +598,23 @@ function submitUserInfo() {
     const pickupCarFile = document.getElementById("pickupCar").files[0];
     const returnCarFile = document.getElementById("returnCar").files[0];
 
-    if (pickupCarFile && pickupCarFile.type !== "text/plain") {
+    if (!fullName) {
+        pickupShowNotification('Please input your name.', 'error');
+        return;
+    }
+    if (!carLocation) {
+        pickupShowNotification('Please input your car location.', 'error');
+        return;
+    }
+    if (!carPlate) {
+        pickupShowNotification('Please input your Car Plate.', 'error');
+        return;
+    }
+    if (!pickupCarFile && pickupCarFile.type !== "text/plain") {
         alert("Please upload a valid text file for Pickup Car.");
         return;
     }
-    if (returnCarFile && returnCarFile.type !== "text/plain") {
+    if (!returnCarFile && returnCarFile.type !== "text/plain") {
         alert("Please upload a valid text file for Return Car.");
         return;
     }
