@@ -1,6 +1,6 @@
 //swiper function
 function initializeSwiper() {
-    return new Swiper(".swiper", {
+     new Swiper(".swiper", {
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
