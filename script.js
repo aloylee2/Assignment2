@@ -153,12 +153,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //sending value
 
-function sendValue(value) {
-    // Store the button value in local storage
-    localStorage.setItem('buttonValue', value);
-    // Redirect to the next page
-    window.location.href = 'testformsavetxt.html';
-}
+// function sendValue(value) {
+//     // Store the button value in local storage
+//     localStorage.setItem('buttonValue', value);
+//     // Redirect to the next page
+//     window.location.href = 'testformsavetxt.html';
+// }
 
 // carselection send value over to form
 function select(carName, carPrice) {
@@ -526,7 +526,7 @@ function carReturnSubmitReport() {
     };
 
     const carReturnDetails = carReturnGetQueryParams();
-    let carReturnReportContent = `Pickup Details:\n`;
+    let carReturnReportContent = `Return Details:\n`;
     carReturnReportContent += `
 
         Damage Report:
