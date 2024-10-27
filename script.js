@@ -39,23 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //feedback open up email 
 function sendFeedback(event) {
-    event.preventDefault(); // Prevent form from submitting normally
+    event.preventDefault();
 
     const firstName = document.getElementById('firstName').value;
     const feedbackComment = document.getElementById('feedbackComment').value;
     const recipient = 'support@azoomrental.com';
 
-    // Encode the subject and body for the email
+    
     const subject = 'Feedback from ' + firstName;
     const body = `Feedback Comment:\n\n${feedbackComment}`;
 
-    // Create the mailto link
+    
     const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    // Open the mailto link in the user's email client
+    
     window.location.href = mailtoLink;
 
-    // Clear the form fields
+    
     document.getElementById('firstName').value = '';
     document.getElementById('feedbackComment').value = '';
 }
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loginUser = (username, password) => {
         try {
-            // Check for admin credentials
+            // Check for admin 
             if (username === 'admin' && password === 'admin123') {
                 alert("Login successful! Hello, Admin!");
                 window.location.href = 'welcomeadminpage.html';
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const storedUser = JSON.parse(localStorage.getItem(username));
 
-            // Check for user credentials
+            // Check for user 
             if (storedUser && storedUser.password === password) {
                 alert(`Login successful! Hello, ${username}!`);
                 localStorage.setItem("id", username);
@@ -144,21 +144,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateForm();
 });
 
-// logoutButton.addEventListener("click", () => {
-//     userArea.classList.add("hidden");
-//     authForm.classList.remove("hidden");
-//     alert("Logged out successfully.");
-// });
-
-
-//sending value
-
-// function sendValue(value) {
-//     // Store the button value in local storage
-//     localStorage.setItem('buttonValue', value);
-//     // Redirect to the next page
-//     window.location.href = 'testformsavetxt.html';
-// }
 
 // carselection send value over to form
 function select(carName, carPrice) {
@@ -428,7 +413,7 @@ Images:\n
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                // Add base64 string to the report
+                
                 reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
                 imagesProcessed++;
 
