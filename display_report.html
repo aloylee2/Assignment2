@@ -35,71 +35,6 @@
         <div class="image-grid" id="imageGrid"></div>
     </div>
 
-    <script>
-        function readReport() {
-            const fileInput = document.getElementById('reportFile');
-            const reportContentDiv = document.getElementById('reportContent');
-            const imageGrid = document.getElementById('imageGrid');
-            reportContentDiv.innerHTML = ''; 
-            imageGrid.innerHTML = ''; 
-
-            if (fileInput.files.length === 0) {
-                alert('Please select a file.');
-                return;
-            }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const content = e.target.result;
-                displayReport(content);
-            };
-
-            reader.readAsText(file);
-        }
-
-        function displayReport(content) {
-            const reportContentDiv = document.getElementById('reportContent');
-            const imageGrid = document.getElementById('imageGrid');
-            const lines = content.split('\n');
-            let reportText = '';
-
-            lines.forEach(line => {
-                const base64Data = getImageBase64(line);
-                if (base64Data) {
-                    
-                    return;
-                }
-               
-                reportText += line + '\n';
-            });
-
-            reportContentDiv.textContent = reportText;
-
-            lines.forEach(line => {
-                const base64Data = getImageBase64(line);
-                if (base64Data) {
-                    const imgCard = document.createElement('div');
-                    imgCard.className = 'image-card';
-
-                   
-                    const label = line.split(':')[0]; 
-                    imgCard.innerHTML = `
-                        <img src="data:image/png;base64,${base64Data}" alt="${label} Image">
-                        <div class="image-label">${label}</div>
-                    `;
-                    imageGrid.appendChild(imgCard);
-                }
-            });
-        }
-
-        function getImageBase64(line) {
-            const base64Match = line.match(/(Front|Back|Left|Right): data:image\/[^;]+;base64,([A-Za-z0-9+/=]+)/);
-            return base64Match ? base64Match[0].split(',')[1] : null;
-        }
-    </script>
-
 </body>
 <footer>
 
@@ -145,4 +80,5 @@
     </div>
   
   </footer>
+  <script src="script.js"></script>
 </html>

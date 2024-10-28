@@ -637,9 +637,9 @@ function initializeEventListeners() {
     commentForm.addEventListener("submit", handleSubmit);
 }
 
-// handle image uploads
+//read report 
 function handleImageUpload() {
-    imagePreview.innerHTML = ''; // Clear previous previews
+    imagePreview.innerHTML = ''; 
     const files = imageUpload.files;
 
     for (let i = 0; i < files.length; i++) {
@@ -650,7 +650,7 @@ function handleImageUpload() {
     }
 }
 
-// handle form submission
+
 function handleSubmit(e) {
     e.preventDefault();
 
@@ -664,7 +664,7 @@ function handleSubmit(e) {
     window.location.href = 'returnedpageadmin.html';
 }
 
-//  gather comment data
+
 function gatherCommentData() {
     const commentData = {
         username: selectedUser.username,
@@ -681,7 +681,7 @@ function gatherCommentData() {
     return commentData;
 }
 
-//  download the report
+
 function downloadReport(commentData) {
     const reportContent = `
                 Check for Damages to the Car Report
@@ -701,11 +701,74 @@ function downloadReport(commentData) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url); // Clean up
+    URL.revokeObjectURL(url); 
 }
 
-// Function to reset the form
+
 function resetForm() {
     commentForm.reset();
-    imagePreview.innerHTML = ''; // Clear the image previews
+    imagePreview.innerHTML = ''; 
+}
+
+function readReport() {
+    const fileInput = document.getElementById('reportFile');
+    const reportContentDiv = document.getElementById('reportContent');
+    const imageGrid = document.getElementById('imageGrid');
+    reportContentDiv.innerHTML = ''; 
+    imageGrid.innerHTML = ''; 
+
+    if (fileInput.files.length === 0) {
+        alert('Please select a file.');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const content = e.target.result;
+        displayReport(content);
+    };
+
+    reader.readAsText(file);
+}
+
+function displayReport(content) {
+    const reportContentDiv = document.getElementById('reportContent');
+    const imageGrid = document.getElementById('imageGrid');
+    const lines = content.split('\n');
+    let reportText = '';
+
+    lines.forEach(line => {
+        const base64Data = getImageBase64(line);
+        if (base64Data) {
+            
+            return;
+        }
+       
+        reportText += line + '\n';
+    });
+
+    reportContentDiv.textContent = reportText;
+
+    lines.forEach(line => {
+        const base64Data = getImageBase64(line);
+        if (base64Data) {
+            const imgCard = document.createElement('div');
+            imgCard.className = 'image-card';
+
+           
+            const label = line.split(':')[0]; 
+            imgCard.innerHTML = `
+                <img src="data:image/png;base64,${base64Data}" alt="${label} Image">
+                <div class="image-label">${label}</div>
+            `;
+            imageGrid.appendChild(imgCard);
+        }
+    });
+}
+
+function getImageBase64(line) {
+    const base64Match = line.match(/(Front|Back|Left|Right): data:image\/[^;]+;base64,([A-Za-z0-9+/=]+)/);
+    return base64Match ? base64Match[0].split(',')[1] : null;
 }
