@@ -40,8 +40,8 @@
             const fileInput = document.getElementById('reportFile');
             const reportContentDiv = document.getElementById('reportContent');
             const imageGrid = document.getElementById('imageGrid');
-            reportContentDiv.innerHTML = ''; // Clear previous report content
-            imageGrid.innerHTML = ''; // Clear previous images
+            reportContentDiv.innerHTML = ''; 
+            imageGrid.innerHTML = ''; 
 
             if (fileInput.files.length === 0) {
                 alert('Please select a file.');
@@ -68,10 +68,10 @@
             lines.forEach(line => {
                 const base64Data = getImageBase64(line);
                 if (base64Data) {
-                    // If line contains an image URL, ignore it
+                    
                     return;
                 }
-                // Otherwise, append the line to the report text
+               
                 reportText += line + '\n';
             });
 
@@ -83,8 +83,8 @@
                     const imgCard = document.createElement('div');
                     imgCard.className = 'image-card';
 
-                    // Determine which side the image corresponds to
-                    const label = line.split(':')[0]; // Get the label (e.g., Front, Back)
+                   
+                    const label = line.split(':')[0]; 
                     imgCard.innerHTML = `
                         <img src="data:image/png;base64,${base64Data}" alt="${label} Image">
                         <div class="image-label">${label}</div>
@@ -131,7 +131,7 @@
   
       <p class="footer-company-about">
         <span>About the company</span>
-        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+        About the company.........
       </p>
   
       <div class="footer-icons">

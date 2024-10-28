@@ -31,13 +31,13 @@ function initializeSwiper() {
     });
 }
 
-// Initialize Swiper
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeSwiper();
 });
 
 
-//feedback open up email 
+
 function sendFeedback(event) {
     event.preventDefault();
 
@@ -73,21 +73,21 @@ document.addEventListener('DOMContentLoaded', function () {
         authForm.querySelector("button").innerText = isLogin ? "Login" : "Register";
     };
 
-    // Switch to Register form
+   
     window.switchToRegisterForm = function (e) {
         e.preventDefault();
         isLogin = false;
         updateForm();
     };
 
-    // Switch to Login form
+    
     window.switchToLoginForm = function (e) {
         e.preventDefault();
         isLogin = true;
         updateForm();
     };
 
-    // Handle form submission
+    
     window.handleFormSubmit = function (e) {
         e.preventDefault();
         const username = document.getElementById("username").value;
@@ -102,16 +102,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loginUser = (username, password) => {
         try {
-            // Check for admin 
+            
             if (username === 'admin' && password === 'admin123') {
                 alert("Login successful! Hello, Admin!");
                 window.location.href = 'welcomeadminpage.html';
-                return; // Exit after redirecting
+                return;
             }
 
             const storedUser = JSON.parse(localStorage.getItem(username));
 
-            // Check for user 
+          
             if (storedUser && storedUser.password === password) {
                 alert(`Login successful! Hello, ${username}!`);
                 localStorage.setItem("id", username);
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Initialize the form on page load
+
     updateForm();
 });
 
@@ -188,7 +188,7 @@ function generateCarPlateNumber() {
 function handleSubmitReserve(event) {
     event.preventDefault();
     const errorMessageElement = document.getElementById('reserve_page_errorMessage');
-    errorMessageElement.innerText = ""; // Clear previous error messages
+    errorMessageElement.innerText = ""; 
 
     const pickupDate = document.getElementById('reserve_page_pickupDate').value;
     const dropDate = document.getElementById('reserve_page_dropDate').value;
@@ -242,7 +242,7 @@ window.onload = () => {
 };
 
 //summary pagejs
-// Function to get query parameters from the URL
+
 function getQueryParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
@@ -254,7 +254,7 @@ function getQueryParams() {
     return params;
 }
 
-// Function to display reservation details
+
 function displayReservationDetails() {
     const details = getQueryParams();
     if (!details.fullName) {
@@ -275,7 +275,7 @@ function displayReservationDetails() {
     document.getElementById('summaryDetails').innerHTML = summaryHTML;
 }
 
-// Function to handle car pick-up action
+
 function pickUpCar() {
     const details = getQueryParams();
     const params = new URLSearchParams(details).toString();
@@ -283,8 +283,6 @@ function pickUpCar() {
 }
 
 //pickup.js
-
- // Function to get query parameters from the URL
  function pickupGetQueryParams() {
     const params = {};
     const queryString = window.location.search.substring(1);
@@ -296,7 +294,7 @@ function pickUpCar() {
     return params;
 }
 
-// Function to display reservation details on pickup page
+
 function pickupDisplayPickupDetails() {
     const details = pickupGetQueryParams();
     if (!details.fullName || !details.email) {
@@ -318,7 +316,7 @@ function pickupDisplayPickupDetails() {
     document.getElementById('pickupDetails').innerHTML = pickupHTML;
 }
 
-// Function to download the report as a text file
+
 function pickupDownloadReport(content) {
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
@@ -336,7 +334,7 @@ function pickupDownloadReport(content) {
     window.location.href = 'welcome_user.html';
 }
 
-// Function to display notifications
+
 function pickupShowNotification(message, type) {
     const notification = document.createElement('div');
     notification.textContent = message;
@@ -347,11 +345,11 @@ function pickupShowNotification(message, type) {
     }, 3000);
 }
 
-// Function to preview uploaded images
+
 function pickupPreviewImage(inputId, previewId) {
     const input = document.getElementById(inputId);
     const preview = document.getElementById(previewId);
-    preview.innerHTML = ''; // Clear previous images
+    preview.innerHTML = ''; 
 
     const file = input.files[0];
     if (file) {
@@ -372,7 +370,7 @@ function pickupPreviewImage(inputId, previewId) {
     }
 }
 
-// Function to handle the submission of the report
+
 function pickupSubmitReport() {
     const damageReport = document.getElementById('damageReport').value.trim();
     if (!damageReport) {
@@ -417,7 +415,6 @@ Images:\n
                 reportContent += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${e.target.result}\n`;
                 imagesProcessed++;
 
-                // Check if all images have been processed
                 if (imagesProcessed === imageKeys.length) {
                     pickupDownloadReport(reportContent);
                 }
@@ -429,7 +426,7 @@ Images:\n
         }
     });
 
-    // Download if no images are uploaded
+    
     if (imagesProcessed === imageKeys.length) {
         pickupDownloadReport(reportContent);
     }
@@ -437,7 +434,6 @@ Images:\n
 
 
 //return car.js
-// Function to get query parameters from the URL
 function carReturnGetQueryParams() {
     const carReturnParams = {};
     const queryString = window.location.search.substring(1);
@@ -449,7 +445,7 @@ function carReturnGetQueryParams() {
     return carReturnParams;
 }
 
-// Function to display reservation details on pickup page
+
 function carReturnDisplayPickupDetails() {
     const carReturnDetails = carReturnGetQueryParams();
     if (!carReturnDetails.fullName || !carReturnDetails.email) {
@@ -470,11 +466,11 @@ function carReturnDisplayPickupDetails() {
     document.getElementById('pickupDetails').innerHTML = carReturnPickupHTML;
 }
 
-// Function to preview uploaded images
+
 function carReturnPreviewImage(inputId, previewId) {
     const input = document.getElementById(inputId);
     const preview = document.getElementById(previewId);
-    preview.innerHTML = ''; // Clear previous images
+    preview.innerHTML = ''; 
 
     const file = input.files[0];
     if (file) {
@@ -495,7 +491,6 @@ function carReturnPreviewImage(inputId, previewId) {
     }
 }
 
-// Function to handle the submission of the report
 function carReturnSubmitReport() {
     const carReturnDamageReport = document.getElementById('carReturnDamageReport').value.trim();
     if (!carReturnDamageReport) {
@@ -538,20 +533,19 @@ function carReturnSubmitReport() {
     });
 
     Promise.all(imagePromises).then(() => {
-        console.log(carReturnReportContent); // Check content
+        console.log(carReturnReportContent); 
         carReturnDownloadReport(carReturnReportContent);
     });
 }
 
-// Function to download the report as a text file
 function carReturnDownloadReport(content) {
-    const carReturnDetails = carReturnGetQueryParams(); // Ensure this retrieves data
+    const carReturnDetails = carReturnGetQueryParams(); 
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `car_return_report.txt`; // Fallback filename
+    a.download = `car_return_report.txt`; 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -562,7 +556,7 @@ function carReturnDownloadReport(content) {
     window.location.href = 'returningcarform.html';
 }
 
-// Function to display notifications
+
 function carReturnShowNotification(message, type) {
     const notification = document.createElement('div');
     notification.textContent = message;
@@ -579,7 +573,7 @@ function submitUserInfo() {
     const carPlate = document.getElementById("carPlate").value;
     const carLocation = document.getElementById("carLocation").value;
 
-    // Get files and check if they are text files
+   
     const pickupCarFile = document.getElementById("pickupCar").files[0];
     const returnCarFile = document.getElementById("returnCar").files[0];
 
@@ -637,13 +631,13 @@ const imagePreview = document.getElementById("imagePreview");
 
 const selectedUser = JSON.parse(localStorage.getItem("selectedUser"));
 
-// Function to initialize event listeners
+
 function initializeEventListeners() {
     imageUpload.addEventListener("change", handleImageUpload);
     commentForm.addEventListener("submit", handleSubmit);
 }
 
-// Function to handle image uploads
+// handle image uploads
 function handleImageUpload() {
     imagePreview.innerHTML = ''; // Clear previous previews
     const files = imageUpload.files;
@@ -656,7 +650,7 @@ function handleImageUpload() {
     }
 }
 
-// Function to handle form submission
+// handle form submission
 function handleSubmit(e) {
     e.preventDefault();
 
@@ -670,7 +664,7 @@ function handleSubmit(e) {
     window.location.href = 'returnedpageadmin.html';
 }
 
-// Function to gather comment data
+//  gather comment data
 function gatherCommentData() {
     const commentData = {
         username: selectedUser.username,
@@ -687,7 +681,7 @@ function gatherCommentData() {
     return commentData;
 }
 
-// Function to download the report
+//  download the report
 function downloadReport(commentData) {
     const reportContent = `
                 Check for Damages to the Car Report

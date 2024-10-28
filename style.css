@@ -239,12 +239,12 @@ input[type=submit] {
   cursor: pointer;
 }
 
-/* When hovering, add a darker green color */
+
 input[type=submit]:hover {
   background-color: #626962;
 }
 
-/* Add a background color and some padding around the form */
+
 .feedback-form {
   border-radius: 5px;
   background-color: #dad6d6;
@@ -365,14 +365,14 @@ footer .footer-icons a{
   padding: 20px;
 }
 
-/* Title styling */
+
 #formTitle {
   text-align: center;
   color: #00796b; 
   margin-bottom: 20px;
 }
 
-/* Input styles */
+
 #authForm input {
   width: 100%;
   padding: 10px;
@@ -382,7 +382,7 @@ footer .footer-icons a{
   box-sizing: border-box;
 }
 
-/* Button styles */
+
 #form-login_register .container button {
   background-color: #00796b; 
   color: white;
@@ -397,7 +397,7 @@ footer .footer-icons a{
   background-color: #004d40; 
 }
 
-/* car available */
+
 .car-container-cards{
   background-color:#dad6d6;
   border:1px solid black;
@@ -430,7 +430,7 @@ justify-content: center;
     font-size: 16px;
 }
 
-/* display_report.csss */
+
 
 .container_report {
   background-color: #fff;
@@ -600,7 +600,7 @@ button{
   border-radius: 5px;
   padding: 10px;
   text-align: center;
-  height: 150px; /* Fixed height for square effect */
+  height: 150px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -676,7 +676,7 @@ button{
   border-radius: 5px;
   padding: 10px;
   text-align: center;
-  height: 150px; /* Fixed height for square effect */
+  height: 150px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -738,13 +738,12 @@ button{
 }
 
 /* commentpage (admin) */
- /* Container for image previews */
  .image-preview-container {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
 }
-/* Individual image preview styles */
+
 .image-preview-container img {
   max-width: 100px;
   margin-right: 10px;
@@ -774,7 +773,7 @@ button{
       margin: 10px 0px;
     }
 }
-/* If you don't want the footer to be responsive, remove these media queries */
+
 @media screen and (max-width: 800px) {
   .top-nav-li{
     display: block;
@@ -805,10 +804,10 @@ button{
 
 @media (max-width: 768px) {
   .car-return-image-grid {
-      grid-template-columns: 1fr; /* Stack images in one column */
+      grid-template-columns: 1fr; 
   }
   .image-grid {
-    grid-template-columns: 1fr; /* Stack images in one column */
+    grid-template-columns: 1fr; 
 }
 #reportFile{
   margin: 10px 0px;
